@@ -10,7 +10,7 @@
     <?php foreach($transportes as $n){ ?>
 
     
-   <input type="hidden" name ="id" value="<?php echo $n->idHotel; ?>">
+   <input type="hidden" name ="id" value="<?php echo $n->idTransporte; ?>">
  
         <label for="NumLugares" >Número Lugares </label>
     <div class="form-group input-group">
