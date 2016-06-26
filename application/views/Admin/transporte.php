@@ -19,8 +19,8 @@ if(isset($trans)){
                  
             
         
-        echo "<td><a class='btn btn-success' href='frmUpCliente/$n->idTransporte'>Modificar</a></td>"
-            . "<td><a class='btn btn-danger' href='delCliente/$n->idTransporte'>Eliminar</a></td></tr>";
+        echo "<td><a class='btn btn-success' href='frmUpTransporte/$n->idTransporte'>Modificar</a></td>"
+            . "<td><a class='btn btn-danger' href='delTransporte/$n->idTransporte'>Eliminar</a></td></tr>";
     }
 }else{
     echo "Sin registros";

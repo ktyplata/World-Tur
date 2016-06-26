@@ -27,36 +27,32 @@ class Transporte extends CI_Controller{
     }
          public function addTransporte(){
           
-        $n = $this->input->post('NombreHotel');
-        $d = $this->input->post('Direccion');
-        $t = $this->input->post('Telefono');
-        $ch = $this->input->post('CostoHotel');
+        $nl = $this->input->post('NumLugares');
+        $nt = $this->input->post('NomTransporte');
         
-        $this->Transporte_model->addTransporte($n,$d, $t, $ch);
+        $this->Transporte_model->addTransporte($nl,$nt);
         redirect ('Transporte/getTransporte');
         $this->getTransporte();
     }
     
      public function upTransporte(){
         $id = $this->input->post('idTransporte');
-        $n = $this->input->post('NombreHotel');
-        $d = $this->input->post('Direccion');
-        $t = $this->input->post('Telefono');
-        $ch = $this->input->post('CostoHotel');
+        $nl = $this->input->post('NumLugares');
+        $nt = $this->input->post('NomTransporte');
         
-        $this->Transporte_model->upTransporte($id,$n,$d, $t, $ch);
+        $this->Transporte_model->upTransporte($id,$nl,$nt);
         
         redirect('Transporte/getTransporte');
     }
     
      public function frmUpTransporte($id){
-        $dato['hoteles'] = $this->Transporte_model->getTransporte($id);
+        $dato['transportes'] = $this->Transporte_model->getTransporte($id);
          $dato['content'] = 'Admin/frmUpTransporte';
         $this->load->view('plantillaAdmin', $dato);
     }
     
     public function delTransporte($id){
-        $this->v_model->delTransporte($id);
+        $this->Transporte_model->delTransporte($id);
         
         redirect('Transporte/getTransporte');
     }
