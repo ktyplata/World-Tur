@@ -2,7 +2,7 @@
         <div class="panel-warning">
             <div class="panel-heading" style=" text-align: center">Este es el Módulo de Transporte</div>
 <table class="table  table-responsive table-striped table-hover table-bordered" >
-    <tr><td colspan="4" ><a href="<?php echo base_url(); ?>index.php/Admin/frmtransporte" class="btn btn-info">Nuevo</a></td></tr>
+    <tr><td colspan="4" ><a href="<?php echo base_url(); ?>index.php/Admin/frmTransporte" class="btn btn-info">Nuevo</a></td></tr>
     <tr>
         <td>NumLugares</td>
         <td class="hidden-xs">NomTransporte</td>
