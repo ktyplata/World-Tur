@@ -50,6 +50,12 @@ class Admin extends CI_Controller{
         $this->load->view('plantillaAdmin', $data);
     }
     
+    public function frmTransporte()
+    {
+        $data['content'] = 'Admin/frmTransporte';
+        $this->load->view('plantillaAdmin', $data);
+    }
+    
     
     
     
