@@ -65,7 +65,7 @@ class Transporte extends CI_Controller{
     
     public function getProv($id=null){
         $dato['prov']=$this->Transporte_model->getProv($id);
-        $dato['content'] = 'Admin/provtransporte';
+        $dato['content'] = 'Admin/transporte';
         $this->load->view('plantillaAdmin', $dato);
         
         
