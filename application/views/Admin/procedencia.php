@@ -2,10 +2,11 @@
         <div class="panel-warning">
             <div class="panel-heading" style=" text-align: center">Este es el Módulo de Procedencia</div>
 <table class="table  table-responsive table-striped table-hover table-bordered" >
-    <tr><td colspan="4" ><a href="<?php echo base_url(); ?>index.php/Admin/frmProcedencia" class="btn btn-info">Nuevo</a></td></tr>
+    <tr><td colspan="5" ><a href="<?php echo base_url(); ?>index.php/Admin/frmProcedencia" class="btn btn-info">Nuevo</a></td></tr>
     <tr>
-        <td>NumLugares</td>
-        <td class="hidden-xs">NomTransporte</td>
+        <td>LugarSalida</td>
+        <td class="hidden-xs"> HorarioSalida</td>
+        <td class="hidden-xs">idProveedor</td>
       
         
         <td colspan="2" style=" text-align: center">Acciones</td>
@@ -13,14 +14,15 @@
 <?php
 if(isset($proce)){
     foreach ($proce as $n){
-        echo "<tr> <td>" . $n->NumLugares . "</td>" .
-              "<td class='hidden-xs'>" . $n->NomTransporte. "</td>"   ;
+        echo "<tr> <td>" . $n->LugarSalida . "</td>" .
+                 "<td class='hidden-xs'>" . $n->HorarioSalida. "</td>"  .
+              "<td class='hidden-xs'>" . $n->idProveedor. "</td>"   ;
         
                  
             
         
-        echo "<td><a class='btn btn-success' href='frmUpTransporte/$n->idTransporte'>Modificar</a></td>"
-            . "<td><a class='btn btn-danger' href='delTransporte/$n->idTransporte'>Eliminar</a></td></tr>";
+        echo "<td><a class='btn btn-success' href='frmUpProcedencia/$n->idProcedencia'>Modificar</a></td>"
+            . "<td><a class='btn btn-danger' href='delProcedencia/$n->idProcedencia'>Eliminar</a></td></tr>";
     }
 }else{
     echo "Sin registros";
