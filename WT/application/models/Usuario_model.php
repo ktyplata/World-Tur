@@ -1,0 +1,72 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Usuario_model extends CI_Model{
+   
+     public function __construct() {
+        parent::__construct();
+    }
+    
+   public function getUsuarios($id = null){
+        $this->db->select('*');
+        $this->db->from('users');
+        if($id != null){
+            $this->db->where('idUsuario', $id);
+        }
+        $sql = $this->db->get();   
+        
+        if($sql->num_rows() > 0){
+            return $sql->result();
+        }
+    }
+    
+    
+     public function  sesion($u, $p){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('user', $u);
+        $this->db->where('password', $p);
+        $sql=$this->db->get();
+        
+        if($sql->num_rows()> 0){
+            return $sql->row();
+        }else{
+            return null;
+            
+        }
+        
+    }
+    
+    public function addUsuario($u, $p){
+        $dato = array(
+            'idUsuario' => 0,
+            'user'     => $u,
+            'password'  => $p
+        );
+       return $this->db->insert('users', $dato);
+        
+	
+    }
+    
+  
+    
+    public function upUsuario($id,  $u, $p){
+        //UPDATE Usuario SET (username= '$u', password='$p',
+        //        email = '$e') WHERE idUsuario = $id
+        $dato = array(
+            'user'     => $u,
+            'password'  => $p
+            
+        );
+        $this->db->where('idUsuario', $id);
+        return $this->db->update('users', $dato);
+    }
+    
+    public function delUsuario($id){
+    //DELETE FROM Usuario WHERE $idUsuario = $id
+        $this->db->where('idUsuario', $id);
+        return $this->db->delete('users');
+    }
+    
+    
+   
+}
