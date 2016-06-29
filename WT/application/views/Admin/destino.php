@@ -1,6 +1,6 @@
 <section  class="col-sm-8 col-sm-offset-2">
         <div class="panel-warning">
-            <div class="panel-heading" style=" text-align: center">Este es el Módulo de Procedencia</div>
+            <div class="panel-heading" style=" text-align: center">Este es el Módulo de Destino</div>
 <table class="table  table-responsive table-striped table-hover table-bordered" >
     <tr><td colspan="5" ><a href="<?php echo base_url(); ?>index.php/Admin/frmDestino" class="btn btn-info">Nuevo</a></td></tr>
     <tr>
