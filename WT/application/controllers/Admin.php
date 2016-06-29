@@ -62,6 +62,12 @@ class Admin extends CI_Controller{
         $this->load->view('plantillaAdmin', $data);
     }
     
+     public function frmProcedencia()
+    {
+        $data['content'] = 'Admin/frmProcedencia';
+        $this->load->view('plantillaAdmin', $data);
+    }
+    
     
     
     public function login(){
