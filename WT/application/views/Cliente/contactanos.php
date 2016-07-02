@@ -1,7 +1,7 @@
    <section id="contact-info">
         <div class="center">                
             <h2>Contáctanos</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            <p class="lead">Comun&iacute;cate con nosotros para resolver tus dudas y no te quedes con las ganas de experimentar nuevas aventuras..</p>
         </div>
         <div class="gmap-area">
             <div class="container">
@@ -16,39 +16,32 @@
                         <ul class="row">
                             <li class="col-sm-6">
                                 <address>
-                                    <h5>Head Office</h5>
-                                    <p>1537 Flint Street <br>
-                                    Tumon, MP 96911</p>
-                                    <p>Phone:670-898-2847 <br>
-                                    Email Address:info@domain.com</p>
+                                    <h5>Direcci&oacute;n</h5>
+                                    <p>San Marcos #11 <br>
+                                    Colonia San Isidro 2</p>
+                                    <p>Telefono 417-17-250-34 <br>
+                                    Email:worldtur@gmail.com</p>
                                 </address>
 
                                 <address>
-                                    <h5>Zonal Office</h5>
-                                    <p>1537 Flint Street <br>
-                                    Tumon, MP 96911</p>                                
-                                    <p>Phone:670-898-2847 <br>
-                                    Email Address:info@domain.com</p>
-                                </address>
+                                    <h5>B&uacute;scanos en facebook</h5>
+                                    <p>Para m&aacute;s informaci&oacute;n   <br>
+                                        y publicaci&oacute;n de promociones</p>
+                                    <p>No te pierdas la oportunidad <br>
+                                    de experimentar nuevas aventuras</p>
+                                    
                             </li>
 
 
                             <li class="col-sm-6">
                                 <address>
-                                    <h5>Zone#2 Office</h5>
-                                    <p>1537 Flint Street <br>
-                                    Tumon, MP 96911</p>
-                                    <p>Phone:670-898-2847 <br>
-                                    Email Address:info@domain.com</p>
+                                    <h5>Los precios m&aacute;s bajos garantizados </h5>
+                                    <p>Viajes por todo el pa&iacute;s experiencia de 12 a&ntilde;os 
+                                        Reserva en los mejores hoteles<br></p>
+                                    
                                 </address>
 
-                                <address>
-                                    <h5>Zone#3 Office</h5>
-                                    <p>1537 Flint Street <br>
-                                    Tumon, MP 96911</p>
-                                    <p>Phone:670-898-2847 <br>
-                                    Email Address:info@domain.com</p>
-                                </address>
+                                
                             </li>
                         </ul>
                     </div>

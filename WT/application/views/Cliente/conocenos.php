@@ -17,13 +17,13 @@
 
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="<?php echo base_url();?>images/slider/" class="img-responsive" alt=""> 
+							<img src="<?php echo base_url();?>images/1.png" class="img-responsive" alt=""> 
 					   </div>
 					   <div class="item">
-							<img src="<?php echo base_url();?>images/woman-fashion.jpg" class="img-responsive" alt=""> 
+							<img src="<?php echo base_url();?>images/4.png" class="img-responsive" alt=""> 
 					   </div> 
 					   <div class="item">
-							<img src="<?php echo base_url();?>images/banner_italy-moda1.jpg" class="img-responsive" alt=""> 
+							<img src="<?php echo base_url();?>images/5.png" class="img-responsive" alt=""> 
 					   </div> 
 					</div>
 					
@@ -46,7 +46,7 @@
 			<div class="team">
 				<div class="center wow fadeInDown">
 					<h2>World Tur</h2>
-					<p class="lead">Somos una boutique dedicada a la venta de prendas para vestir. <br> Con el proposito de ofrecer un estilo juvenil y casual en cada prenda.</p>
+                                        <p class="lead">Somos una empresa dedicada a realizar viajes. <br> Con el prop&oacute;sito de ofrecer los mejores viajes para convivir con la familia.</p>
 				</div>
 
 				<div class="row clearfix">
@@ -62,7 +62,7 @@
 									
 								</div>
 							</div><!--/.media -->
-							<p>Ser ....</p>
+                                                        <p>Para el a&ntilde;o 2020 llegar a ser la mejor opción para los habitantes de la región, dando un servicio de calidad, contar con m&aacute;s sucursales para ofrecer servicio a m&aacute;s personas, ofrecer m&aacute;s destinos tur&iacute;sticos en el pa&iacute;s.</p>
 						</div>
 					</div><!--/.col-lg-4 -->
 					<br>
@@ -80,7 +80,7 @@
 									
 								</div>
 							</div><!--/.media -->
-							<p>Brindar ....</p>
+                                                        <p>Ofrecer el mejor servicio con la finalidad de obtener la complacencia del cliente con nuestros viajes a precios accesibles para que las familias disfruten de las bellezas de lugares que hay en el pa&iacute;s.</p>
 						</div>
 					</div><!--/.col-lg-4 -->
 					
@@ -135,11 +135,17 @@
                         <div class="media">
                             <div class="parrent pull-left">
                                 <ul class="nav nav-tabs nav-stacked">
-                                    <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01"> ggghhg</a></li>
-                                    <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">rrttt </a></li>
-                                    <li class=""><a href="#tab3" data-toggle="tab" class="tehnical">	Compromiso </a></li>
-                                    <li class=""><a href="#tab4" data-toggle="tab" class="tehnical">Calidad </a></li>
-                                    <li class=""><a href="#tab5" data-toggle="tab" class="tehnical">Responsabilidad</a></li>
+                                    <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01"> Respeto:</a><p>Respeto
+                                            La vinculaci&oacute;n que existe con el cliente debe de ser buena, hablar con un lenguaje amable y cordial.
+</p></li>
+                                    <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">Confiabilidad:<p>Los datos 
+                                                obtenidos por parte del cliente est&aacute;n 100% seguras y nadie tiene acceso a ella m&aacute;s que solo 
+                                                el personal autorizado</p></a></li>
+                                                <li class=""><a href="#tab3" data-toggle="tab" class="tehnical">Cuidado al cliente </a>
+                                                    <p>Atentos para satisfacer sus expectativas de los clientes.</p></li>
+                                                <li class=""><a href="#tab4" data-toggle="tab" class="tehnical">Comunicaci&oacute;n fluida</a><p>Tener buena 
+                                                                comunicaci&oacute;n para poder mejorar la experiencia en sus viajes.</p></li>
+                                                        <li class=""><a href="#tab5" data-toggle="tab" class="tehnical">Honestidad</a><p>Cumplir con lo acordado con el cliente</p></li>
                                 </ul>
                             </div>
 
@@ -160,13 +166,9 @@
                                      <div class="tab-pane active in" id="tab2">
                                         <div class="media">
                                            <div class="pull-left">
-                                                <img class="img-responsive" src="images/valores.png">
+                                                <img class="img-responsive" src="img/vision.png">
                                             </div>
-                                            <div class="media-body">
-                                                 <h4>â€¢	Ã‰tica</h4>
-                                                 <p>hacemos lo moralmente correcto.
-                                                 </p>
-                                            </div>
+                                            
                                         </div>
                                      </div>
 
@@ -176,11 +178,7 @@
                                            <div class="pull-left">
                                                 <img class="img-responsive" src="images/empresas.png">
                                             </div>
-                                            <div class="media-body">
-                                                 <h4>â€¢	Compromiso: </h4>
-                                                 <p>tenemos un compromiso con el cliente al cumplir con nuestras obligaciones.
-                                                 </p>
-                                            </div>
+                                            
                                         </div>
                                      </div>
                                      
@@ -190,11 +188,7 @@
                                            <div class="pull-left">
                                                 <img class="img-responsive" src="images/shop7.jpg">
                                             </div>
-                                            <div class="media-body">
-                                                 <h4>â€¢	Calidad: </h4>
-                                                 <p>otorgamos garantÃ­a total de nuestros productos.
-                                                 </p>
-                                            </div>
+                                            
                                         </div>
                                      </div>
 
@@ -203,11 +197,7 @@
                                            <div class="pull-left">
                                                 <img class="img-responsive" src="images/383783_compras-mulher-sorriso-branco-menina-.jpg">
                                             </div>
-                                            <div class="media-body">
-                                                 <h4>â€¢	Responsabilidad: </h4>
-                                                 <p>estamos obligados a cumplir con las exigencias del cliente.
-                                                 </p>
-                                            </div>
+                                            
                                         </div>
                                      </div>
                                 </div> <!--/.tab-content-->  

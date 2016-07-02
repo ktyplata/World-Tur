@@ -2,7 +2,7 @@
         <div class="container">
             <div class="center wow fadeInDown">
                 <h2>Galeria</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <p class="lead">Conoce algunos de los muchos viajes que realizamos en todo el pais ..<br> y visitalos !No te arrepentiras¡</p>
             </div>
 
             <div class="row">
