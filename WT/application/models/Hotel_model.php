@@ -17,6 +17,23 @@ class Hotel_model  extends CI_Model {
         parent::__construct();
     }
     
+    
+     public function total(){
+            $sql=  $this->db->get('hotel');
+            return $sql->num_rows();
+        }
+        
+        public function paginados($cant, $segmento){
+            $sql=$this->db->get('hotel', $cant, $segmento);
+            if ($sql->num_rows()>0){
+                foreach ($sql->result()as $res){
+                    $data[]=$res;
+                } 
+                return $data;
+            }
+            return FALSE;
+        }
+        
      public function getHotel($id = null){
         $this->db->select('*');
         $this->db->from('hotel');

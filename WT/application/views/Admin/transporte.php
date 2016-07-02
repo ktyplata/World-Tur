@@ -11,8 +11,8 @@
         <td colspan="2" style=" text-align: center">Acciones</td>
     </tr>
 <?php
-if(isset($trans)){
-    foreach ($trans as $n){
+if(isset($transportes)){
+    foreach ($transportes as $n){
         echo "<tr> <td>" . $n->NumLugares . "</td>" .
               "<td class='hidden-xs'>" . $n->NomTransporte. "</td>"   ;
         
@@ -27,6 +27,10 @@ if(isset($trans)){
 }
 ?>
 </table>
+            
+            <?php
+        echo $this->pagination->create_links(); 
+        ?>
             <button class="btn btn-info visible-xs hidden-lg hidden-md hidden-sm" type="submit"> <span class="glyphicon glyphicon-plus-sign" >Ver Mas</span></button>
             </div>
 

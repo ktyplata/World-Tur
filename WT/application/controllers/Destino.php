@@ -17,11 +17,27 @@ class Destino extends CI_Controller{
         $this->load->model('Destino_model');
     }
     
-    public function getDestino($id=null){
-        $dato['dest']=$this-> Destino_model->getDestino($id);
+    public function getDestino(){
+     
         $dato['content'] = 'Admin/destino';
-        $this->load->view('plantillaAdmin', $dato);
         
+        
+        
+        $page=5;
+            $this->load->library('pagination');
+            $config['base_url']=  base_url().
+                    'index.php/Destino/pagina';
+            
+            $config['total_rows']=  $this->Destino_model->total();
+            
+            $config['per_page']=$page;
+            $config['num_links']=30;
+            
+            $this->pagination->initialize($config);
+            
+            $dato['destinos']=  $this->Destino_model->paginados($config['per_page'], $this->uri->segment(3));
+            
+        $this->load->view('plantillaAdmin', $dato);  
         
     }
          public function addDestino(){

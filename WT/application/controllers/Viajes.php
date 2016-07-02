@@ -8,10 +8,27 @@ class Viajes extends CI_Controller{
         $this->load->model('Viaje_model');
     }
     
-    public function getViajes($id=null){
-        $dato['vi']=$this->Viaje_model->getViajes($id);
+    public function getViajes(){
+     
         $dato['content'] = 'Admin/viajes';
-        $this->load->view('plantillaAdmin', $dato);
+  
+        
+        $page=5;
+            $this->load->library('pagination');
+            $config['base_url']=  base_url().
+                    'index.php/Viajes/pagina';
+            
+            $config['total_rows']=  $this->Viaje_model->total();
+            
+            $config['per_page']=$page;
+            $config['num_links']=30;
+            
+            $this->pagination->initialize($config);
+            
+            $dato['viajes']=  $this->Viaje_model->paginados($config['per_page'], $this->uri->segment(3));
+            
+        $this->load->view('plantillaAdmin', $dato);   
+        
         
         
     }

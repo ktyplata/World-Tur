@@ -6,6 +6,22 @@ class Usuario_model extends CI_Model{
         parent::__construct();
     }
     
+     public function total(){
+            $sql=  $this->db->get('users');
+            return $sql->num_rows();
+        }
+        
+        public function paginados($cant, $segmento){
+            $sql=$this->db->get('users', $cant, $segmento);
+            if ($sql->num_rows()>0){
+                foreach ($sql->result()as $res){
+                    $data[]=$res;
+                } 
+                return $data;
+            }
+            return FALSE;
+        }
+    
    public function getUsuarios($id = null){
         $this->db->select('*');
         $this->db->from('users');

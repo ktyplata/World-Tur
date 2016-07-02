@@ -18,11 +18,45 @@ class Transporte extends CI_Controller{
         $this->load->model('Transporte_model');
     }
     
-    public function getTransporte($id=null){
-        $dato['trans']=$this->Transporte_model->getTransporte($id);
-        $dato['content'] = 'Admin/transporte';
-        $this->load->view('plantillaAdmin', $dato);
+    
+     public function total(){
+            $sql=  $this->db->get('transporte');
+            return $sql->num_rows();
+        }
         
+        public function paginados($cant, $segmento){
+            $sql=$this->db->get('transporte', $cant, $segmento);
+            if ($sql->num_rows()>0){
+                foreach ($sql->result()as $res){
+                    $data[]=$res;
+                } 
+                return $data;
+            }
+            return FALSE;
+        }
+    
+    public function getTransporte(){
+        
+        $dato['content'] = 'Admin/transporte';
+      
+        
+        
+        
+        $page=5;
+            $this->load->library('pagination');
+            $config['base_url']=  base_url().
+                    'index.php/Transporte/pagina';
+            
+            $config['total_rows']=  $this->Transporte_model->total();
+            
+            $config['per_page']=$page;
+            $config['num_links']=30;
+            
+            $this->pagination->initialize($config);
+            
+            $dato['transportes']=  $this->Transporte_model->paginados($config['per_page'], $this->uri->segment(3));
+            
+        $this->load->view('plantillaAdmin', $dato);  
         
     }
          public function addTransporte(){

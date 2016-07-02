@@ -8,10 +8,35 @@ class Cliente extends CI_Controller{
     }
     
     
-    public function getCliente($id=null){
-        $dato['cl']=$this->Cliente_model->getCliente($id);
+    public function getCliente(){
         $dato['content'] = 'Admin/clientes';
-        $this->load->view('plantillaAdmin', $dato);
+        
+        
+        
+        
+        
+            $page=5;
+            $this->load->library('pagination');
+            $config['base_url']=  base_url().
+                    'index.php/Cliente/pagina';
+            
+            $config['total_rows']=  $this->Cliente_model->total();
+            
+            $config['per_page']=$page;
+            $config['num_links']=30;
+            
+            $this->pagination->initialize($config);
+            
+            $dato['cliente']=  $this->Cliente_model->paginados($config['per_page'], $this->uri->segment(3));
+            
+        $this->load->view('plantillaAdmin', $dato);    
+             
+            
+          
+            
+           
+        
+        
         
         
     }

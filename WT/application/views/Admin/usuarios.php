@@ -10,8 +10,8 @@
         <td colspan="2" style=" text-align: center">Acciones</td>
     </tr>
 <?php
-if(isset($us)){
-    foreach ($us as $n){
+if(isset($usuarios)){
+    foreach ($usuarios as $n){
         echo "<tr> <td>" . $n->user . "</td>" .
             "<td class='hidden-xs'>" . $n->password. "</td>" ;
         
@@ -26,6 +26,11 @@ if(isset($us)){
 }
 ?>
 </table>
+            
+            
+            <?php
+        echo $this->pagination->create_links(); 
+        ?>
             <button class="btn btn-info visible-xs hidden-lg hidden-md hidden-sm" type="submit"> <span class="glyphicon glyphicon-plus-sign" >Ver Mas</span></button>
             </div>
 

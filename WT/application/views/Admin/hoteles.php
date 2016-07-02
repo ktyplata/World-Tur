@@ -13,8 +13,8 @@
         <td colspan="2" style=" text-align: center">Acciones</td>
     </tr>
 <?php
-if(isset($ho)){
-    foreach ($ho as $n){
+if(isset($hoteles)){
+    foreach ($hoteles as $n){
         echo "<tr> <td>" . $n->NombreHotel . "</td>" .
                 "<td class='hidden-xs'>" . $n->Direccion. "</td>" .
             "<td class='hidden-xs'>" . $n->Telefono. "</td>" .
@@ -32,6 +32,11 @@ if(isset($ho)){
 }
 ?>
 </table>
+            
+            
+            <?php
+        echo $this->pagination->create_links(); 
+        ?>
             <button class="btn btn-info visible-xs hidden-lg hidden-md hidden-sm" type="submit"> <span class="glyphicon glyphicon-plus-sign" >Ver Mas</span></button>
             </div>
 

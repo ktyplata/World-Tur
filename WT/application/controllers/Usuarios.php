@@ -8,11 +8,27 @@ class Usuarios extends CI_Controller{
     }
    
     
-      public function getUsuarios($id=null){
-        $dato['us']=$this->Usuario_model->getUsuarios($id);
-        $dato['content'] = 'Admin/usuarios';
-        $this->load->view('plantillaAdmin', $dato);
+      public function getUsuarios(){
         
+        $dato['content'] = 'Admin/usuarios';
+        
+        
+        
+        $page=5;
+            $this->load->library('pagination');
+            $config['base_url']=  base_url().
+                    'index.php/Usuarios/pagina';
+            
+            $config['total_rows']=  $this->Usuario_model->total();
+            
+            $config['per_page']=$page;
+            $config['num_links']=30;
+            
+            $this->pagination->initialize($config);
+            
+            $dato['usuarios']=  $this->Usuario_model->paginados($config['per_page'], $this->uri->segment(3));
+            
+        $this->load->view('plantillaAdmin', $dato);  
         
     }
          public function addUsuario(){

@@ -50,5 +50,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Welcome';
+$route['Cliente/pagina/(:num)'] = 'Cliente/getCliente';
+$route['Cliente/pagina'] = 'Cliente/getCliente';
+
+$route['Viajes/pagina/(:num)'] = 'Viajes/getViajes';
+$route['Viajes/pagina'] = 'Viajes/getViajes';
+
+$route['Hotel/pagina/(:num)'] = 'Hotel/getHotel';
+$route['Hotel/pagina'] = 'Hotel/getHotel';
+
+$route['Transporte/pagina/(:num)'] = 'Transporte/getTransporte';
+$route['Transporte/pagina'] = 'Transporte/getTransporte';
+
+
+$route['Destino/pagina/(:num)'] = 'Destino/getDestino';
+$route['Destino/pagina'] = 'Destino/getDestino';
+
+$route['Procedencia/pagina/(:num)'] = 'Procedencia/getProcedencia';
+$route['Procedencia/pagina'] = 'Procedencia/getProcedencia';
+
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
