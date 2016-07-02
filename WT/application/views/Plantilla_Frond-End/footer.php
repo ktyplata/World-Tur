@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    &copy; 2016. All Rights Reserved.
+                    Copyright 2016 Word Tur. Todos los derechos reservados.
                 </div>
                
             </div>
