@@ -5,11 +5,14 @@ class Principal extends CI_Controller{
     
      public function __construct() {
         parent::__construct();
+        $this->load->library('calendar');
     }
       public function index()
     {
+           $data ['calendario'] = $this->calendar->generate();
         $data['content'] = 'Cliente/home';
         $this->load->view('plantillaFrond', $data);
+        
     }
     
     

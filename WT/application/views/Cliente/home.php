@@ -188,3 +188,8 @@
             </div>        
         </div><!--/.container-->
     </section><!--/#partner-->
+    
+    
+    <?php
+    echo $calendario;
+    ?>
