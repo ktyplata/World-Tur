@@ -12,7 +12,6 @@ class Viajes extends CI_Controller{
      
         $dato['content'] = 'Admin/viajes';
   
-        
         $page=5;
             $this->load->library('pagination');
             $config['base_url']=  base_url().
@@ -32,7 +31,39 @@ class Viajes extends CI_Controller{
         
         
     }
-         public function addViajes(){
+    
+        public function addViajes(){
+            $this->form_validation->set_rules('Nombre', 'Nombre', 'trim|is_unique[viajes.Nombre]|required');
+            $this->form_validation->set_rules('Precio', 'Precio', 'trim|required|numeric');
+            $this->form_validation->set_rules('NumEntradas', 'Número de Entradas', 'trim|required|numeric');
+            $this->form_validation->set_rules('Itinerario', 'Itinerario', 'trim|required');
+            $this->form_validation->set_rules('LugaresVisitados', 'Lugares Visitados', 'trim|required|numeric');
+            $this->form_validation->set_rules('idCliente', 'idCliente', 'trim|required|numeric');
+            $this->form_validation->set_rules('idProcedencia', 'idProcedencia', 'trim|required|numeric');
+            $this->form_validation->set_rules('idDestino', 'idDestino', 'trim|required|numeric');
+//            $this->form_validation->set_rules('TotalViaje', 'TotalViaje', 'trim|required|numeric');
+//            $this->form_validation->set_rules('Preciohotel', 'Preciohotel', 'trim|required|numeric');
+       if($this->form_validation->run ()=== false):
+            $data['content'] = 'Admin/frmViajes';
+            $this->load->view('plantillaAdmin', $data);
+        else:
+        $n = $this->input->post('Nombre');
+        $p = $this->input->post('Precio');
+        $num = $this->input->post('NumEntradas');
+        $i = $this->input->post('Itinerario');
+        $lv = $this->input->post('LugaresVisitados');
+        $idC = $this->input->post('idCliente');
+        $idP = $this->input->post('idProcedencia');
+        $idD = $this->input->post('idDestino');
+//        $tv = $this->input->post('TotalViaje');
+//        $pHo = $this->input->post('Preciohotel');
+        
+        $this->Viaje_model->addViajes($n, $p, $num, $i, $lv, $idC, $idP, $idD);
+        redirect ('Viajes/getViajes');
+        $this->getViajes();
+       endif;
+    }
+    /*public function addViajes(){
           
         $n = $this->input->post('Nombre');
         $p = $this->input->post('Precio');
@@ -48,9 +79,43 @@ class Viajes extends CI_Controller{
         $this->Viaje_model->addViajes($n, $p, $num, $i, $lv, $idC, $idP, $idD, $tv, $pHo);
         redirect ('Viajes/getViajes');
         $this->getViajes();
+    }*/
+     public function upViajes(){
+         $this->form_validation->set_rules('Nombre', 'Nombre', 'trim|is_unique[viajes.Nombre]|required');
+            $this->form_validation->set_rules('Precio', 'Precio', 'trim|required|numeric');
+            $this->form_validation->set_rules('NumEntradas', 'Número de Entradas', 'trim|required|numeric');
+            $this->form_validation->set_rules('Itinerario', 'Itinerario', 'trim|required');
+            $this->form_validation->set_rules('LugaresVisitados', 'Lugares Visitados', 'trim|required|numeric');
+            $this->form_validation->set_rules('idCliente', 'idCliente', 'trim|required|numeric');
+            $this->form_validation->set_rules('idProcedencia', 'idProcedencia', 'trim|required|numeric');
+            $this->form_validation->set_rules('idDestino', 'idDestino', 'trim|required|numeric');
+//            $this->form_validation->set_rules('TotalViaje', 'TotalViaje', 'trim|required|numeric');
+//            $this->form_validation->set_rules('Preciohotel', 'Preciohotel', 'trim|required|numeric');
+            $id = $this->input->post('idViajes');
+       if($this->form_validation->run ()=== false):
+         $dato['viajes'] = $this->Viaje_model->getViajes($id);
+         $dato['content'] = 'Admin/frmUpViajes';
+        $this->load->view('plantillaAdmin', $dato);
+       else:
+        $id = $this->input->post('idViajes');
+        $n = $this->input->post('Nombre');
+        $p = $this->input->post('Precio');
+        $num = $this->input->post('NumEntradas');
+        $i = $this->input->post('Itinerario');
+        $lv = $this->input->post('LugaresVisitados');
+        $idC = $this->input->post('idCliente');
+        $idP = $this->input->post('idProcedencia');
+        $idD = $this->input->post('idDestino');
+//        $tv = $this->input->post('TotalViaje');
+//        $pHo = $this->input->post('Preciohotel');
+         $this->Viaje_model->upViajes($id, $n, $p, $num, $i, $lv, $idC, $idP, $idD);
+        redirect('Viajes/getViajes');
+        endif;
     }
     
-     public function upViajes(){
+         
+    
+    /* public function upViajes(){
         $id = $this->input->post('idViajes');
         $n = $this->input->post('Nombre');
         $p = $this->input->post('Precio');
@@ -67,7 +132,7 @@ class Viajes extends CI_Controller{
          $this->Viaje_model->upViajes($id, $n, $p, $num, $i, $lv, $idC, $idP, $idD, $tv, $pHo);
         
         redirect('Viajes/getViajes');
-    }
+    }*/
     
      public function frmUpViajes($id){
         $dato['viajes'] = $this->Viaje_model->getViajes($id);
@@ -75,10 +140,27 @@ class Viajes extends CI_Controller{
         $this->load->view('plantillaAdmin', $dato);
     }
     
+     
+    
     public function delViajes($id){
         $this->Viaje_model->delViajes($id);
         
         redirect('Viajes/getViajes');
     }
+    
+    
+     public function tuXML($nombre){
+            $xml=  $this->Viaje_model->tuXML();
+            $this->load->helper('download');
+            $nombre .='.xml';
+            force_download($nombre, $xml);
+        }
+        
+        public function tuExcel(){
+            $this->load->helper('mysql_to_excel');
+            to_excel($this->Viaje_model->tuExcel(), "Viajes");
+        }
+    
+    
     
 }

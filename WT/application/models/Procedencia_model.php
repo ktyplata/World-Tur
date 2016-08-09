@@ -23,7 +23,8 @@ class Procedencia_model extends CI_Model  {
         }
         
         public function paginados($cant, $segmento){
-            $sql=$this->db->get('procedencia', $cant, $segmento);
+            $this->db->where('procedencia.idProveedor = proveedortransporte.idProveedor');
+            $sql=$this->db->get('procedencia, proveedortransporte', $cant, $segmento);
             if ($sql->num_rows()>0){
                 foreach ($sql->result()as $res){
                     $data[]=$res;
@@ -35,7 +36,8 @@ class Procedencia_model extends CI_Model  {
     
      public function getProcedencia($id = null){
         $this->db->select('*');
-        $this->db->from('procedencia');
+        $this->db->from('procedencia, proveedortransporte');
+        $this->db->where('procedencia.idProveedor = proveedortransporte.idProveedor');
         if($id != null){
             $this->db->where('idProcedencia', $id);
         }
@@ -77,5 +79,27 @@ class Procedencia_model extends CI_Model  {
         $this->db->where('idProcedencia', $id);
         return $this->db->delete('procedencia');
     }
+    
+    public function tuXML (){
+            $this->load->dbutil();
+            $consulta=  $this->db->get('procedencia');
+            $config=array(
+                'root'      => 'respaldo_agencia2',
+                'element'   => 'elemento',
+                'newline'   => "\n",
+                'tab'       => "\t"
+                );
+            $respuestaXML =  
+                            $this->dbutil->xml_from_result($consulta, $config);
+            return $respuestaXML;
+        }
+        
+        
+        public function tuExcel(){
+            // Obtener la formula de los campos
+            $fields=  $this->db->field_data('procedencia');
+            $query=  $this->db->get('procedencia');
+            return array ("fields" => $fields, "query" => $query);
+        }
     
 }

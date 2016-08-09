@@ -35,8 +35,8 @@ class Transporte extends CI_Controller{
             return FALSE;
         }
     
-    public function getTransporte(){
-        
+    public function getTransporte($id=null){
+        $dato['transport']=$this->Transporte_model->getTransporte($id);
         $dato['content'] = 'Admin/transporte';
       
         
@@ -54,12 +54,12 @@ class Transporte extends CI_Controller{
             
             $this->pagination->initialize($config);
             
-            $dato['transportes']=  $this->Transporte_model->paginados($config['per_page'], $this->uri->segment(3));
+            $dato['transport']=  $this->Transporte_model->paginados($config['per_page'], $this->uri->segment(3));
             
         $this->load->view('plantillaAdmin', $dato);  
         
     }
-         public function addTransporte(){
+         /*public function addTransporte(){
           
         $nl = $this->input->post('NumLugares');
         $nt = $this->input->post('NomTransporte');
@@ -67,9 +67,39 @@ class Transporte extends CI_Controller{
         $this->Transporte_model->addTransporte($nl,$nt);
         redirect ('Transporte/getTransporte');
         $this->getTransporte();
-    }
+        
+        
+         }*/
     
-     public function upTransporte(){
+    public function addTransporte(){
+          $this->form_validation->set_rules('NumLugares', 'Número Lugares','trim|required|numeric' );
+         $this->form_validation->set_rules('NomTransporte', 'Nombre Transporte', 'trim|is_unique[transporte.NomTransporte]|required' );
+        
+       if($this->form_validation->run ()=== false):
+           $data['content'] = 'Admin/frmTransporte';
+            $this->load->view('plantillaAdmin', $data);
+       else:
+        $nl = $this->input->post('NumLugares');
+        $nt = $this->input->post('NomTransporte');
+        
+        $this->Transporte_model->addTransporte($nl,$nt);
+        redirect ('Transporte/getTransporte');
+        $this->getTransporte();
+          endif;
+        
+         }
+         
+         public function upTransporte(){
+         
+         $this->form_validation->set_rules('NumLugares', 'Número Lugares','trim|required|numeric' );
+         $this->form_validation->set_rules('NomTransporte', 'Nombre Transporte', 'trim|is_unique[transporte.NomTransporte]|required' );
+         $id = $this->input->post('idTransporte');
+         
+       if($this->form_validation->run ()=== false):
+           $dato['transportes'] = $this->Transporte_model->getTransporte($id);
+           $dato['content'] = 'Admin/frmUpTransporte';
+        $this->load->view('plantillaAdmin', $dato);
+       else:
         $id = $this->input->post('idTransporte');
         $nl = $this->input->post('NumLugares');
         $nt = $this->input->post('NomTransporte');
@@ -77,7 +107,17 @@ class Transporte extends CI_Controller{
         $this->Transporte_model->upTransporte($id,$nl,$nt);
         
         redirect('Transporte/getTransporte');
+        endif;
     }
+     /*public function upTransporte(){
+        $id = $this->input->post('idTransporte');
+        $nl = $this->input->post('NumLugares');
+        $nt = $this->input->post('NomTransporte');
+        
+        $this->Transporte_model->upTransporte($id,$nl,$nt);
+        
+        redirect('Transporte/getTransporte');
+    }*/
     
      public function frmUpTransporte($id){
         $dato['transportes'] = $this->Transporte_model->getTransporte($id);
@@ -92,54 +132,17 @@ class Transporte extends CI_Controller{
     }
     
     
-    
-    
-    
-    
-    
-    public function getProv($id=null){
-        $dato['prov']=$this->Transporte_model->getProv($id);
-        $dato['content'] = 'Admin/transporte';
-        $this->load->view('plantillaAdmin', $dato);
+    public function tuXML($nombre){
+            $xml=  $this->Transporte_model->tuXML();
+            $this->load->helper('download');
+            $nombre .='.xml';
+            force_download($nombre, $xml);
+        }
+        
+        public function tuExcel(){
+            $this->load->helper('mysql_to_excel');
+            to_excel($this->Transporte_model->tuExcel(), "Transporte");
+        }
         
         
-    }
-         public function addProv(){
-          
-        $n = $this->input->post('NombreHotel');
-        
-        $t = $this->input->post('Telefono');
-        $em = $this->input->post('Email');
-        $d = $this->input->post('Direccion');
-        $idT = $this->input->post('idTransporte');
-        
-        $this->Transporte_model->addProv($n,$t ,$em, $d, $idT);
-        redirect ('Transporte/getTransporte');
-        $this->getProv();
-    }
-    
-     public function upProv(){
-        $id = $this->input->post('idProveedor');
-        $n = $this->input->post('NombreHotel');
-        $t = $this->input->post('Telefono');
-        $em = $this->input->post('Email');
-        $d = $this->input->post('Direccion');
-        $idT = $this->input->post('idTransporte');
-        
-        $this->Transporte_model->upProv($id,$n,$t ,$em, $d, $idT);
-        
-        redirect('Transporte/getTransporte');
-    }
-    
-     public function frmUpProv($id){
-        $dato['tra'] = $this->Transporte_model->getTransporte($id);
-         $dato['content'] = 'Admin/frmUpTransporte';
-        $this->load->view('plantillaAdmin', $dato);
-    }
-    
-    public function delProv($id){
-        $this->Transporte_model->delProv($id);
-        
-        redirect('Transporte/getTransporte');
-    }
 }

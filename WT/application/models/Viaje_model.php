@@ -14,7 +14,12 @@ class Viaje_model extends CI_Model{
         }
         
         public function paginados($cant, $segmento){
-            $sql=$this->db->get('viajes', $cant, $segmento);
+                $this->db->where('viajes.idCliente = cliente.idCliente');
+                $this->db->where('viajes.idProcedencia = procedencia.idProcedencia');
+                $this->db->where('destino.idDestino= viajes.idDestino');
+//                $this->db->where('viajes.idHotel = hotel.idHotel');
+//            $sql=$this->db->get('viajes, cliente, procedencia, destino, hotel', $cant, $segmento);
+            $sql=$this->db->get('viajes, cliente, procedencia, destino', $cant, $segmento);
             if ($sql->num_rows()>0){
                 foreach ($sql->result()as $res){
                     $data[]=$res;
@@ -28,7 +33,15 @@ class Viaje_model extends CI_Model{
     
     public function getViajes($id = null){
         $this->db->select('*');
-        $this->db->from('viajes');
+//        $this->db->from('viajes');
+        $this->db->from('viajes, cliente, procedencia, destino');
+//        $this->db->from('viajes, cliente, procedencia, destino, hotel');
+        $this->db->where('viajes.idCliente = cliente.idCliente');
+        $this->db->where('viajes.idProcedencia = procedencia.idProcedencia');
+        $this->db->where(' destino.idDestino = viajes.idDestino ');
+//        $this->db->where('viajes.idHotel = hotel.idHotel');
+//        $this->db->select('SUM(hotel.CostoHotel + viaje.Precio)');
+//        $this->db->query("call sp_addCotizar('$id','$p','$ch')");
         if($id != null){
             $this->db->where('idViajes', $id);
         }
@@ -42,7 +55,7 @@ class Viaje_model extends CI_Model{
     
    
     
-    public function addViajes($n, $p, $num, $i, $lv, $idC, $idP, $idD, $tv, $pHo){
+    public function addViajes($n, $p, $num, $i, $lv, $idC, $idP, $idD){
         $dato = array(
             'idViajes' => 0,
             'Nombre'     => $n,
@@ -52,9 +65,9 @@ class Viaje_model extends CI_Model{
             'LugaresVisitados'  => $lv,
             'idCliente'  => $idC,
             'idProcedencia'  => $idP,
-            'idDestino'  => $idD,
-            'TotalViaje'  => $tv,
-            'Preciohotel'  => $pHo
+            'idDestino'  => $idD
+//            'TotalViaje'  => $tv,
+//            'Preciohotel'  => $pHo
         );
        return $this->db->insert('viajes', $dato);
         
@@ -63,7 +76,7 @@ class Viaje_model extends CI_Model{
     
   
     
-    public function upViajes($id,$n, $p, $num, $i, $lv, $idC, $idP, $idD, $tv, $pHo  ){
+    public function upViajes($id,$n, $p, $num, $i, $lv, $idC, $idP, $idD ){
         //UPDATE Usuario SET (username= '$u', password='$p',
         //        email = '$e') WHERE idUsuario = $id
         $dato = array(
@@ -75,8 +88,8 @@ class Viaje_model extends CI_Model{
             'idCliente'  => $idC,
             'idProcedencia'  => $idP,
             'idDestino'  => $idD,
-            'TotalViaje'  => $tv,
-            'Preciohotel'  => $pHo
+//            'TotalViaje'  => $tv,
+//            'Preciohotel'  => $pHo
             
         );
         $this->db->where('idViajes', $id);
@@ -88,6 +101,33 @@ class Viaje_model extends CI_Model{
         $this->db->where('idViajes', $id);
         return $this->db->delete('viajes');
     }
+    
+    
+    
+    public function tuXML (){
+            $this->load->dbutil();
+            $consulta=  $this->db->get('viajes');
+            $config=array(
+                'root'      => 'respaldo_agencia2',
+                'element'   => 'elemento',
+                'newline'   => "\n",
+                'tab'       => "\t"
+                );
+            $respuestaXML =  
+                            $this->dbutil->xml_from_result($consulta, $config);
+            return $respuestaXML;
+        }
+        
+        
+        public function tuExcel(){
+            // Obtener la formula de los campos
+            $fields=  $this->db->field_data('viajes');
+            $query=  $this->db->get('viajes');
+            return array ("fields" => $fields, "query" => $query);
+        }
+        
+    
+    
     
     
 }

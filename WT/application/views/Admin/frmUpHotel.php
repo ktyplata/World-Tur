@@ -2,15 +2,14 @@
     
     
     
-<h1 class="mbr-header__text">Modificar Clientes</h1>
+<h1 class="mbr-header__text">Modificar Hotel</h1>
 
-        
-<?php echo form_open('Hotel/upHotel');?>
-
+<?php echo validation_errors(); ?>
+<form action="<?php echo base_url();?>index.php/Hotel/upHotel" method="post">
     <?php foreach($hoteles as $n){ ?>
 
     
-   <input type="hidden" name ="id" value="<?php echo $n->idHotel; ?>">
+   <input type="hidden" name ="idHotel" value="<?php echo $n->idHotel; ?>">
  
         <label for="NombreHotel" >NombreHotel </label>
     <div class="form-group input-group">
@@ -41,7 +40,8 @@
         
           
     <div class="form-group">
-           <input type="submit"  name="submit"  value="Modificar" class="btn btn-success btn-lg"  required="required" >
+           <input type="submit"  name="submit" onclick="return confirmar()"   value="Modificar" class="btn btn-success btn-lg"  required="required" >
+            <a  href="<?php echo base_url();?>index.php/Hotel/getHotel"><button style="float:right;" type="button"   class="btn btn-info btn-lg" > Cancelar</button></a>
     </div>
     <?php } ?>
 </form>
@@ -54,5 +54,13 @@
 </div>
 
 
-
+<script type="text/javascript">
+            function confirmar(){
+        if(confirm('¿Realmente deseas modificar este hotel ?'))
+            return true;
+        
+                else
+                    return false;
+        }
+        </script>    
 

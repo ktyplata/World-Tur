@@ -35,6 +35,7 @@ class Transporte_model extends CI_Model{
         }
     
      public function getTransporte($id = null){
+       
         $this->db->select('*');
         $this->db->from('transporte');
         if($id != null){
@@ -47,18 +48,17 @@ class Transporte_model extends CI_Model{
         }
     }
     
-      public function addTransporte($num,$nt){
+  
+     public function addTransporte($num,$nt){
+         
         $dato = array(
             'idTransporte' => 0,
             'NumLugares'     => $num,
             'NomTransporte'  => $nt
         );
        return $this->db->insert('transporte', $dato);
-        
-	
     }
     
-  
     
     public function upTransporte($id,$num,$nt){
      
@@ -79,54 +79,25 @@ class Transporte_model extends CI_Model{
     
     
     
-    
-    
-    public function getProv($id = null){
-        $this->db->select('*');
-        $this->db->from('proveedortransporte');
-        if($id != null){
-            $this->db->where('idProveedor', $id);
+     public function tuXML (){
+            $this->load->dbutil();
+            $consulta=  $this->db->get('transporte');
+            $config=array(
+                'root'      => 'respaldo_agencia2',
+                'element'   => 'elemento',
+                'newline'   => "\n",
+                'tab'       => "\t"
+                );
+            $respuestaXML =  
+                            $this->dbutil->xml_from_result($consulta, $config);
+            return $respuestaXML;
         }
-        $sql = $this->db->get();   
         
-        if($sql->num_rows() > 0){
-            return $sql->result();
+        
+        public function tuExcel(){
+            // Obtener la formula de los campos
+            $fields=  $this->db->field_data('transporte');
+            $query=  $this->db->get('transporte');
+            return array ("fields" => $fields, "query" => $query);
         }
-    }
-    
-      public function addProv($n,$t ,$em, $d, $idT){
-        $dato = array(
-            'idProveedor' => 0,
-            'Nombre'     => $n,
-            'Telefono'  => $t,
-            'Email'  => $em,
-            'Direccion'  => $d,
-            'idTransporte'  => $idT
-        );
-       return $this->db->insert('proveedortransporte', $dato);
-        
-	
-    }
-    
-  
-    
-    public function upProv($id,$n,$t ,$em, $d, $idT){
-     
-        $dato = array(
-             'Nombre'     => $n,
-            'Telefono'  => $t,
-            'Email'  => $em,
-            'Direccion'  => $d,
-            'idTransporte'  => $idT
-            
-        );
-        $this->db->where('idProveedor', $id);
-        return $this->db->update('proveedortransporte', $dato);
-    }
-    
-    public function delProv($id){
-   
-        $this->db->where('idProveedor', $id);
-        return $this->db->delete('proveedortransporte');
-    }
 }

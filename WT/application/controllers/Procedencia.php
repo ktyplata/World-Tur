@@ -41,7 +41,28 @@ class Procedencia extends CI_Controller{
         
         
     }
-         public function addProcedencia(){
+    
+     public function addProcedencia(){
+          $this->form_validation->set_rules('LugarSalida', 'Lugar Salida','trim|is_unique[procedencia.LugarSalida]|required' );
+           $this->form_validation->set_rules('HorarioSalida', 'Horario Salida', 'trim|required');
+           $this->form_validation->set_rules('idProveedor', 'idProveedor', 'trim|required|numeric');
+         
+        
+       if($this->form_validation->run ()=== false):
+        $data['content'] = 'Admin/frmProcedencia';
+        $this->load->view('plantillaAdmin', $data);
+       else:
+        $ls = $this->input->post('LugarSalida');
+        $hs = $this->input->post('HorarioSalida');
+        $idP = $this->input->post('idProveedor');
+        
+        
+        $this->Procedencia_model->addProcedencia($ls,$hs,$idP);
+        redirect ('Procedencia/getProcedencia');
+        $this->getProcedencia();
+         endif;
+    }
+         /*public function addProcedencia(){
           
         $ls = $this->input->post('LugarSalida');
         $hs = $this->input->post('HorarioSalida');
@@ -51,9 +72,30 @@ class Procedencia extends CI_Controller{
         $this->Procedencia_model->addProcedencia($ls,$hs,$idP);
         redirect ('Procedencia/getProcedencia');
         $this->getProcedencia();
+    }*/
+        public function upProcedencia(){
+           $this->form_validation->set_rules('LugarSalida', 'Lugar Salida','trim|is_unique[procedencia.LugarSalida]|required' );
+           $this->form_validation->set_rules('HorarioSalida', 'Horario Salida', 'trim|required');
+           $this->form_validation->set_rules('idProveedor', 'idProveedor', 'trim|required|numeric');
+           $id = $this->input->post('idProcedencia');
+        
+       if($this->form_validation->run ()=== false):
+         $dato['procedencias'] = $this->Procedencia_model->getProcedencia($id);
+         $dato['content'] = 'Admin/frmUpProcedencia';
+        $this->load->view('plantillaAdmin', $dato);
+        else:
+        $id = $this->input->post('idProcedencia');
+        $ls = $this->input->post('LugarSalida');
+        $hs = $this->input->post('HorarioSalida');
+        $idP = $this->input->post('idProveedor');
+        
+        $this->Procedencia_model->upProcedencia($id,$ls,$hs,$idP);
+        
+        redirect('Procedencia/getProcedencia');
+        endif;
     }
     
-     public function upProcedencia(){
+     /*public function upProcedencia(){
         $id = $this->input->post('idProcedencia');
          $ls = $this->input->post('LugarSalida');
         $hs = $this->input->post('HorarioSalida');
@@ -62,7 +104,7 @@ class Procedencia extends CI_Controller{
         $this->Procedencia_model->upProcedencia($id,$ls,$hs,$idP);
         
         redirect('Procedencia/getProcedencia');
-    }
+    }*/
     
      public function frmUpProcedencia($id){
         $dato['procedencias'] = $this->Procedencia_model->getProcedencia($id);
@@ -75,5 +117,20 @@ class Procedencia extends CI_Controller{
         
         redirect('Procedencia/getProcedencia');
     }
+    
+    
+    public function tuXML($nombre){
+            $xml=  $this->Procedencia_model->tuXML();
+            $this->load->helper('download');
+            $nombre .='.xml';
+            force_download($nombre, $xml);
+        }
+        
+        public function tuExcel(){
+            $this->load->helper('mysql_to_excel');
+            to_excel($this->Procedencia_model->tuExcel(), "Procedencias");
+        }
+        
+        
     
 }

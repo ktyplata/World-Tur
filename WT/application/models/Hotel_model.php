@@ -81,4 +81,28 @@ class Hotel_model  extends CI_Model {
         $this->db->where('idHotel', $id);
         return $this->db->delete('hotel');
     }
+    
+    
+    
+    public function tuXML (){
+            $this->load->dbutil();
+            $consulta=  $this->db->get('hotel');
+            $config=array(
+                'root'      => 'respaldo_agencia2',
+                'element'   => 'elemento',
+                'newline'   => "\n",
+                'tab'       => "\t"
+                );
+            $respuestaXML =  
+                            $this->dbutil->xml_from_result($consulta, $config);
+            return $respuestaXML;
+        }
+        
+        
+        public function tuExcel(){
+            // Obtener la formula de los campos
+            $fields=  $this->db->field_data('hotel');
+            $query=  $this->db->get('hotel');
+            return array ("fields" => $fields, "query" => $query);
+        }
 }

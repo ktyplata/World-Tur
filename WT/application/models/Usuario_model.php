@@ -80,8 +80,34 @@ class Usuario_model extends CI_Model{
     public function delUsuario($id){
     //DELETE FROM Usuario WHERE $idUsuario = $id
         $this->db->where('idUsuario', $id);
+       
         return $this->db->delete('users');
+         
     }
+    
+    
+    
+    public function tuXML (){
+            $this->load->dbutil();
+            $consulta=  $this->db->get('users');
+            $config=array(
+                'root'      => 'respaldo_agencia2',
+                'element'   => 'elemento',
+                'newline'   => "\n",
+                'tab'       => "\t"
+                );
+            $respuestaXML =  
+                            $this->dbutil->xml_from_result($consulta, $config);
+            return $respuestaXML;
+        }
+        
+        
+        public function tuExcel(){
+            // Obtener la formula de los campos
+            $fields=  $this->db->field_data('users');
+            $query=  $this->db->get('users');
+            return array ("fields" => $fields, "query" => $query);
+        }
     
     
    

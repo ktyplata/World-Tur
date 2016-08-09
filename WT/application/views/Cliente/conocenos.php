@@ -129,82 +129,99 @@
         <div class="container" >
        
             <div class="row">
-               <div class="col-xs-12 col-sm-7">
-                    <h2>Valores</h2> 
-                    <div class="tab-wrap">
+            
+                   
+                   <div class="col-xs-12 col-sm-8 wow fadeInDown">
+                          <h2>Valores</h2> 
+                   <div class="tab-wrap"> 
                         <div class="media">
                             <div class="parrent pull-left">
                                 <ul class="nav nav-tabs nav-stacked">
-                                    <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01"> Respeto:</a><p>Respeto
-                                            La vinculaci&oacute;n que existe con el cliente debe de ser buena, hablar con un lenguaje amable y cordial.
-</p></li>
-                                    <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">Confiabilidad:<p>Los datos 
-                                                obtenidos por parte del cliente est&aacute;n 100% seguras y nadie tiene acceso a ella m&aacute;s que solo 
-                                                el personal autorizado</p></a></li>
-                                                <li class=""><a href="#tab3" data-toggle="tab" class="tehnical">Cuidado al cliente </a>
-                                                    <p>Atentos para satisfacer sus expectativas de los clientes.</p></li>
-                                                <li class=""><a href="#tab4" data-toggle="tab" class="tehnical">Comunicaci&oacute;n fluida</a><p>Tener buena 
-                                                                comunicaci&oacute;n para poder mejorar la experiencia en sus viajes.</p></li>
-                                                        <li class=""><a href="#tab5" data-toggle="tab" class="tehnical">Honestidad</a><p>Cumplir con lo acordado con el cliente</p></li>
+                                    <li class=""><a href="#tab1" data-toggle="tab" class="analistic-01"> Respeto</a></li>
+                                    <li class="active"><a href="#tab2" data-toggle="tab" class="analistic-02">Confiabilidad</a></li>
+                                    <li class=""><a href="#tab3" data-toggle="tab" class="tehnical">Cuidado al cliente</a></li>
+                                    <li class=""><a href="#tab4" data-toggle="tab" class="tehnical">Comunicaci&oacute;n fluida</a></li>
+                                    <li class=""><a href="#tab5" data-toggle="tab" class="tehnical">Honestidad</a></li>
                                 </ul>
                             </div>
 
                             <div class="parrent media-body">
                                 <div class="tab-content">
-                                    <div class="tab-pane" id="tab1">
+                                    <div class="tab-pane fade" id="tab1">
                                         <div class="media">
                                            <div class="pull-left">
-                                                <img class="img-responsive" src="images/shopping_girl.png">
+                                                <img class="img-responsive" src="<?php echo base_url();?>images/descarga.jpg">
                                             </div>
                                             <div class="media-body">
-                                                 <h4>â€¢	GarantÃ­a</h4>
-                                                 <p>ofrecemos seriedad en la exclusividad y lujo de nuestros productos.</p>
+                                                 <h2>Respeto</h2>
+                                                 <p>
+                                            La vinculaci&oacute;n que existe con el cliente debe de ser buena, hablar con un lenguaje amable y cordial.</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                     <div class="tab-pane active in" id="tab2">
+                                     <div class="tab-pane fade active in" id="tab2">
                                         <div class="media">
                                            <div class="pull-left">
-                                                <img class="img-responsive" src="img/vision.png">
+                                                <img class="img-responsive" src="<?php echo base_url();?>images/images.jpg">
                                             </div>
-                                            
+                                            <div class="media-body">
+                                                 <h2>Confiabilidad</h2>
+                                                 <p>Los datos 
+                                                obtenidos por parte del cliente est&aacute;n 100% seguras y nadie tiene acceso a ella m&aacute;s que solo 
+                                                el personal autorizado
+                                                 </p>
+                                            </div>
                                         </div>
                                      </div>
 
-                                     <div class="tab-pane" id="tab3">
-
-                                        <div class="media">
-                                           <div class="pull-left">
-                                                <img class="img-responsive" src="images/empresas.png">
-                                            </div>
-                                            
-                                        </div>
-                                     </div>
-                                     
-                                     <div class="tab-pane" id="tab4">
-
-                                      <div class="media">
-                                           <div class="pull-left">
-                                                <img class="img-responsive" src="images/shop7.jpg">
-                                            </div>
-                                            
-                                        </div>
-                                     </div>
-
-                                     <div class="tab-pane" id="tab5">
+                                     <div class="tab-pane fade" id="tab3">
                                          <div class="media">
                                            <div class="pull-left">
-                                                <img class="img-responsive" src="images/383783_compras-mulher-sorriso-branco-menina-.jpg">
+                                                <img class="img-responsive" src="<?php echo base_url();?>images/picture_polaroid.png">
                                             </div>
-                                            
-                                        </div>
+                                            <div class="media-body">
+                                        <p>Atentos para satisfacer sus expectativas de los clientes.</p>
                                      </div>
+                                             </div>
+                                        </div>
+                                     
+                                     <div class="tab-pane fade" id="tab4">
+                                         <div class="media">
+                                           <div class="pull-left">
+                                                <img class="img-responsive" src="<?php echo base_url();?>images/images (1).jpg">
+                                            </div>
+                                            <div class="media-body">
+                                        <p>Tener buena 
+                                                                comunicaci&oacute;n para poder mejorar la experiencia en sus viajes.</p>
+                                     </div>
+                                             </div>
+                                        </div>
+
+                                     <div class="tab-pane fade" id="tab5">
+                                          
+                                         <div class="media">
+                                           <div class="pull-left">
+                                                <img class="img-responsive" src="<?php echo base_url();?>images/honestidad.png">
+                                            </div>
+                                            <div class="media-body">
+                                         
+                                        <p>Cumplir con lo acordado con el cliente.</p>
+                                     </div>
+                                    
+                                    
+                                    </div>
+                                       
                                 </div> <!--/.tab-content-->  
                             </div> <!--/.media-body--> 
                         </div> <!--/.media-->     
                     </div><!--/.tab-wrap-->               
                 </div><!--/.col-sm-6-->
+                 
+                    
+                    
+                    
+         
 
 
                 	
@@ -214,7 +231,7 @@
 
 
 
-                    </div>
+                  
                   
        
         </div>

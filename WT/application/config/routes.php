@@ -53,6 +53,7 @@ $route['default_controller'] = 'Welcome';
 $route['Cliente/pagina/(:num)'] = 'Cliente/getCliente';
 $route['Cliente/pagina'] = 'Cliente/getCliente';
 
+
 $route['Viajes/pagina/(:num)'] = 'Viajes/getViajes';
 $route['Viajes/pagina'] = 'Viajes/getViajes';
 
@@ -69,6 +70,19 @@ $route['Destino/pagina'] = 'Destino/getDestino';
 $route['Procedencia/pagina/(:num)'] = 'Procedencia/getProcedencia';
 $route['Procedencia/pagina'] = 'Procedencia/getProcedencia';
 
+$route['Cotizacion/pagina/(:num)'] = 'Cotizacion/getCot';
+$route['Cotizacion/pagina'] = 'Cotizacion/getCot';
+
+$route['Descripcion/pagina/(:num)'] = 'Descripcion/getDes';
+$route['Descripcion/pagina'] = 'Descripcion/getDes';
+
+
+
+$route['Proveedor/pagina/(:num)'] = 'Proveedor/getProv';
+$route['Proveedor/pagina'] = 'Proveedor/getProv';
+
+$route['Usuarios/pagina/(:num)'] = 'Usuarios/getUsuarios';
+$route['Usuarios/pagina'] = 'Usuarios/getUsuarios';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

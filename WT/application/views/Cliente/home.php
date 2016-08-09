@@ -115,3 +115,6 @@
     <?php
     echo $calendario;
     ?>
+
+    <div class="pull-left"><a href="<?php echo base_url();?>index.php/Admin/login"><img class="media-object" src="<?php echo base_url();?>img/user_admin_gear.png" alt=""></a>
+								</div>

@@ -40,7 +40,7 @@ class Cliente_model  extends CI_Model{
       public function addCliente($n, $t, $d){
         $dato = array(
             'idCliente' => 0,
-            'Nombre'     => $n,
+            'NombreC'     => $n,
             'Telefono'  => $t,
             'Direccion'  => $d
         );
@@ -54,7 +54,7 @@ class Cliente_model  extends CI_Model{
     public function upCliente($id,$n, $t, $d){
      
         $dato = array(
-            'Nombre'     => $n,
+            'NombreC'     => $n,
             'Telefono'  => $t,
             'Direccion'  => $d
             
@@ -68,4 +68,29 @@ class Cliente_model  extends CI_Model{
         $this->db->where('idCliente', $id);
         return $this->db->delete('cliente');
     }
+    
+    
+    
+    public function tuXML (){
+            $this->load->dbutil();
+            $consulta=  $this->db->get('cliente');
+            $config=array(
+                'root'      => 'respaldo_agencia2',
+                'element'   => 'elemento',
+                'newline'   => "\n",
+                'tab'       => "\t"
+                );
+            $respuestaXML =  
+                            $this->dbutil->xml_from_result($consulta, $config);
+            return $respuestaXML;
+        }
+        
+        
+        public function tuExcel(){
+            // Obtener la formula de los campos
+            $fields=  $this->db->field_data('cliente');
+            $query=  $this->db->get('cliente');
+            return array ("fields" => $fields, "query" => $query);
+        }
+        
 }

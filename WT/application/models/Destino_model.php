@@ -22,7 +22,8 @@ class Destino_model extends CI_Model{
         }
         
         public function paginados($cant, $segmento){
-            $sql=$this->db->get('destino', $cant, $segmento);
+            $this->db->where('destino.idHotel = hotel.idHotel');
+            $sql=$this->db->get('destino, hotel', $cant, $segmento);
             if ($sql->num_rows()>0){
                 foreach ($sql->result()as $res){
                     $data[]=$res;
@@ -34,7 +35,8 @@ class Destino_model extends CI_Model{
     
      public function getDestino($id = null){
         $this->db->select('*');
-        $this->db->from('destino');
+        $this->db->from('destino, hotel');
+        $this->db->where('destino.idHotel = hotel.idHotel');
         if($id != null){
             $this->db->where('idDestino', $id);
         }
@@ -50,21 +52,20 @@ class Destino_model extends CI_Model{
             'idDestino' => 0,
             'LugarLlegada'     => $ll,
             'HorarioLlegada'  => $hl,
-            'idProveedor'  => $idH
+            'idHotel'  => $idH
         );
        return $this->db->insert('destino', $dato);
         
 	
     }
     
-  
-    
+        
     public function upDestino($id,$ll,$hl,$idH){
      
         $dato = array(
             'LugarLlegada'     => $ll,
             'HorarioLlegada'  => $hl,
-            'idProveedor'  => $idH
+            'idHotel'  => $idH
             
         );
         $this->db->where('idDestino', $id);
@@ -76,4 +77,26 @@ class Destino_model extends CI_Model{
         $this->db->where('idDestino', $id);
         return $this->db->delete('destino');
     }
+    
+    public function tuXML (){
+            $this->load->dbutil();
+            $consulta=  $this->db->get('destino');
+            $config=array(
+                'root'      => 'respaldo_agencia2',
+                'element'   => 'elemento',
+                'newline'   => "\n",
+                'tab'       => "\t"
+                );
+            $respuestaXML =  
+                            $this->dbutil->xml_from_result($consulta, $config);
+            return $respuestaXML;
+        }
+        
+        
+        public function tuExcel(){
+            // Obtener la formula de los campos
+            $fields=  $this->db->field_data('destino');
+            $query=  $this->db->get('destino');
+            return array ("fields" => $fields, "query" => $query);
+        }
 }

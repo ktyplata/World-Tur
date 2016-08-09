@@ -1,4 +1,14 @@
-  <!DOCTYPE html>
+<?php
+if($this->session->userdata('autentificado')){//si hay una session iniciada
+
+echo '<script>
+alert("Ya existe una sesion iniciada");
+</script>';
+   
+
+} 
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -28,7 +38,7 @@
 
         
 <?php echo form_open('Usuarios/login'); ?>
-
+ <?php echo validation_errors(); ?>
 <form>
  
         <label for="user" >Usuario </label>
@@ -53,7 +63,8 @@
     
 </form>
 
-                     
+              
+					        
                           
                        
 
@@ -64,3 +75,4 @@
 
 </body>
 </html>
+

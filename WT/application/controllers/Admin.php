@@ -5,10 +5,12 @@ class Admin extends CI_Controller{
     
      public function __construct() {
         parent::__construct();
+        $this->load->library('calendar');
     }
     
    public function indexAdmin()
     {
+        $data ['calendario'] = $this->calendar->generate();
         $data['content'] = 'Admin/home';
         $this->load->view('plantillaAdmin', $data);
 	
@@ -26,6 +28,29 @@ class Admin extends CI_Controller{
         $this->load->view('plantillaAdmin', $data);
     }
     
+    public function viajes()
+    {
+        $data['content'] = 'Admin/viajes';
+        $this->load->view('plantillaAdmin', $data);
+    }
+    
+    public function cotizacion()
+    {
+        $data['content'] = 'Admin/cotizacion';
+        $this->load->view('plantillaAdmin', $data);
+    }
+    
+     public function descripcion()
+    {
+        $data['content'] = 'Admin/descripcion';
+        $this->load->view('plantillaAdmin', $data);
+    }
+     public function proveedor()
+    {
+        $data['content'] = 'Admin/proveedor';
+        $this->load->view('plantillaAdmin', $data);
+    }
+    
     public function registro()
     {
         $data['content'] = 'Admin/registro';
@@ -38,6 +63,17 @@ class Admin extends CI_Controller{
         $this->load->view('plantillaAdmin', $data);
     }
     
+    public function frmCot()
+    {
+        $data['content'] = 'Admin/frmCot';
+        $this->load->view('plantillaAdmin', $data);
+    }
+    
+    public function frmDes()
+    {
+        $data['content'] = 'Admin/frmDes';
+        $this->load->view('plantillaAdmin', $data);
+    }
     public function frmClientes()
     {
         $data['content'] = 'Admin/frmClientes';
@@ -53,6 +89,12 @@ class Admin extends CI_Controller{
     public function frmTransporte()
     {
         $data['content'] = 'Admin/frmTransporte';
+        $this->load->view('plantillaAdmin', $data);
+    }
+    
+     public function frmProv()
+    {
+        $data['content'] = 'Admin/frmProv';
         $this->load->view('plantillaAdmin', $data);
     }
     
@@ -76,10 +118,6 @@ class Admin extends CI_Controller{
         
     }
     
-       public function frmUpUsuario(){
-           $data['content'] = 'Admin/frmUpUsuario';
-        $this->load->view('plantillaAdmin', $data);
-       }
        
        
         public function frmUpViajes(){
@@ -96,6 +134,11 @@ class Admin extends CI_Controller{
            $data['content'] = 'Admin/frmUpTransporte';
         $this->load->view('plantillaAdmin', $data);
        }
+       
+       public function frmUpProv(){
+           $data['content'] = 'Admin/frmUpProv';
+        $this->load->view('plantillaAdmin', $data);
+       }
 
 
         public function frmUpDestino(){
@@ -103,7 +146,7 @@ class Admin extends CI_Controller{
         $this->load->view('plantillaAdmin', $data);
        }
     
-  
+        
      
     
     

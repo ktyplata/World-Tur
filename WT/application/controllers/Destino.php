@@ -40,7 +40,7 @@ class Destino extends CI_Controller{
         $this->load->view('plantillaAdmin', $dato);  
         
     }
-         public function addDestino(){
+        /* public function addDestino(){
           
         $ll = $this->input->post('LugarLlegada');
         $hl = $this->input->post('HorarioLlegada');
@@ -50,9 +50,31 @@ class Destino extends CI_Controller{
         $this->Destino_model->addDestino($ll,$hl,$idH);
         redirect ('Destino/getDestino');
         $this->getDestino();
+    }*/
+    
+    
+    public function addDestino(){
+          $this->form_validation->set_rules('LugarLlegada', 'Lugar Llegada','trim|is_unique[destino.LugarLlegada]|required' );
+           $this->form_validation->set_rules('HorarioLlegada', 'Horario Llegada', 'trim|required');
+           $this->form_validation->set_rules('idHotel', 'idHotel', 'trim|required|numeric');
+         
+        
+       if($this->form_validation->run ()=== false):
+        $data['content'] = 'Admin/frmDestino';
+        $this->load->view('plantillaAdmin', $data);
+       else:
+        $ll = $this->input->post('LugarLlegada');
+        $hl = $this->input->post('HorarioLlegada');
+        $idH = $this->input->post('idHotel');
+        
+        
+        $this->Destino_model->addDestino($ll,$hl,$idH);
+        redirect ('Destino/getDestino');
+        $this->getDestino();
+        endif;
     }
     
-     public function upDestino(){
+     /*public function upDestino(){
         $id = $this->input->post('idDestino');
          $ll = $this->input->post('LugarLlegada');
         $hl = $this->input->post('HorarioLlegada');
@@ -61,6 +83,28 @@ class Destino extends CI_Controller{
         $this->Destino_model->upDestino($id,$ll,$hl,$idH);
         
         redirect('Destino/getDestino');
+    }*/
+    
+    public function upDestino(){
+         $this->form_validation->set_rules('LugarLlegada', 'Lugar Llegada','trim|is_unique[destino.LugarLlegada]|required' );
+         $this->form_validation->set_rules('HorarioLlegada', 'Horario Llegada', 'trim|required');
+         $this->form_validation->set_rules('idHotel', 'idHotel', 'trim|required|numeric');
+          $id = $this->input->post('idDestino');
+        
+       if($this->form_validation->run ()=== false):
+         $dato['destinos'] = $this->Destino_model->getDestino($id);
+         $dato['content'] = 'Admin/frmUpDestino';
+         $this->load->view('plantillaAdmin', $dato);
+       else:
+        $id = $this->input->post('idDestino');
+         $ll = $this->input->post('LugarLlegada');
+        $hl = $this->input->post('HorarioLlegada');
+        $idH = $this->input->post('idHotel');
+        
+        $this->Destino_model->upDestino($id,$ll,$hl,$idH);
+        
+        redirect('Destino/getDestino');
+        endif;
     }
     
      public function frmUpDestino($id){
@@ -74,5 +118,17 @@ class Destino extends CI_Controller{
         
         redirect('Destino/getDestino');
     }
+    
+    public function tuXML($nombre){
+            $xml=  $this->Destino_model->tuXML();
+            $this->load->helper('download');
+            $nombre .='.xml';
+            force_download($nombre, $xml);
+        }
+        
+        public function tuExcel(){
+            $this->load->helper('mysql_to_excel');
+            to_excel($this->Destino_model->tuExcel(), "Destinos");
+        }
     
 }
