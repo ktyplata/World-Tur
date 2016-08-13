@@ -44,20 +44,16 @@
         <label  for="idViajes">idViajes</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>
-         <select  class="form-control" name="idViajes" id="idViajes" placeholder="idViajes" required="required"> 
-         
-            <option value="<?php echo $n->idViajes; ?>"> <?php echo $n->idViajes; ?> </option>
-             <option value="0"> Selecciona idViajes </option> 
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="7">7 </option>  
-             <option value="8">8 </option>  
-             <option value="10">10 </option>  
-         
-      
-        </select>   
+        
+         <select class="form-control" name="idViajes" required="required">
+
+           <option value="<?php echo $n->idViajes; ?>"><?php echo $n->Nombre; ?></option>
+            
+              <?php foreach($vi as $i){ ?>
+           
+               <option value="<?php echo $i->idViajes; ?>"><?php echo $i->Nombre; ?></option>
+                              <?php } ?>
+                            </select>    
         
     </div>
         <label  for="Costohotel">Costo Hotel</label>

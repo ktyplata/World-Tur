@@ -43,7 +43,7 @@ class Transporte_model extends CI_Model{
         }
         $sql = $this->db->get();   
         
-        if($sql->num_rows() > 0){
+       if($sql->num_rows() > 0){
             return $sql->result();
         }
     }

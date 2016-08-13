@@ -14,7 +14,8 @@ class Cotizacion_model extends CI_Model {
         }
         
         public function paginados($cant, $segmento){
-            $sql=$this->db->get('cotizacionviaje', $cant, $segmento);
+             $this->db->where('cotizacionviaje.idViajes = viajes.idViajes');
+            $sql=$this->db->get('cotizacionviaje, viajes', $cant, $segmento);
             if ($sql->num_rows()>0){
                 foreach ($sql->result()as $res){
                     $data[]=$res;
@@ -26,7 +27,8 @@ class Cotizacion_model extends CI_Model {
         
      public function getCot($id = null){
         $this->db->select('*');
-        $this->db->from('cotizacionviaje');
+        $this->db->from('cotizacionviaje, viajes');
+         $this->db->where('cotizacionviaje.idViajes = viajes.idViajes');
         if($id != null){
             $this->db->where('idCotizacion', $id);
         }

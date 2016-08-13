@@ -15,6 +15,7 @@ class Procedencia extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('Procedencia_model');
+        $this->load->model('Proveedor_model');
     }
     
     public function getProcedencia(){
@@ -43,9 +44,9 @@ class Procedencia extends CI_Controller{
     }
     
      public function addProcedencia(){
-          $this->form_validation->set_rules('LugarSalida', 'Lugar Salida','trim|is_unique[procedencia.LugarSalida]|required' );
+          $this->form_validation->set_rules('LugarSalida', 'Lugar Salida','trim|is_unique[procedencia.LugarSalida]|required|alpha' );
            $this->form_validation->set_rules('HorarioSalida', 'Horario Salida', 'trim|required');
-           $this->form_validation->set_rules('idProveedor', 'idProveedor', 'trim|required|numeric');
+           $this->form_validation->set_rules('idProveedor', 'Proveedor', 'trim|required');
          
         
        if($this->form_validation->run ()=== false):
@@ -74,9 +75,9 @@ class Procedencia extends CI_Controller{
         $this->getProcedencia();
     }*/
         public function upProcedencia(){
-           $this->form_validation->set_rules('LugarSalida', 'Lugar Salida','trim|is_unique[procedencia.LugarSalida]|required' );
+           $this->form_validation->set_rules('LugarSalida', 'Lugar Salida','trim|required' );
            $this->form_validation->set_rules('HorarioSalida', 'Horario Salida', 'trim|required');
-           $this->form_validation->set_rules('idProveedor', 'idProveedor', 'trim|required|numeric');
+           $this->form_validation->set_rules('idProveedor', 'Proveedor', 'trim|required');
            $id = $this->input->post('idProcedencia');
         
        if($this->form_validation->run ()=== false):
@@ -109,9 +110,11 @@ class Procedencia extends CI_Controller{
      public function frmUpProcedencia($id){
         $dato['procedencias'] = $this->Procedencia_model->getProcedencia($id);
          $dato['content'] = 'Admin/frmUpProcedencia';
+         $this->load->model('Proveedor_model');
+         $dato['prove'] = $this->Proveedor_model->getProv();
         $this->load->view('plantillaAdmin', $dato);
     }
-    
+   
     public function delProcedencia($id){
         $this->Procedencia_model->delProcedencia($id);
         

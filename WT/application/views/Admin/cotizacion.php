@@ -56,7 +56,7 @@
 if(isset($cotiza)){
     foreach ($cotiza as $n){
         echo "<tr>  <td>" . $n->idCotizacion . "</td>"
-        . "<td>" . $n->idViajes . "</td>" .
+        . "<td>" . $n->idViajes ."<br>" . $n->Nombre."</td>"  .
            "<td class='hidden-xs'>" . $n->Costohotel. "</td>" .
             "<td class='hidden-xs'>" . $n->Precio. "</td>" ;
         

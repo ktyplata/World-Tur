@@ -41,7 +41,7 @@ class Cliente extends CI_Controller{
     }*/
     
        public function addCliente(){
-         $this->form_validation->set_rules('NombreC', 'Nombre', 'trim|is_unique[cliente.NombreC]|required');
+         $this->form_validation->set_rules('NombreC', 'Nombre', 'trim|is_unique[cliente.NombreC]|required|alpha');
          $this->form_validation->set_rules('Telefono', 'Teléfono', 'trim|required|numeric');
          $this->form_validation->set_rules('Direccion', 'Dirección', 'trim|required');
        if($this->form_validation->run ()=== false):
@@ -59,7 +59,7 @@ class Cliente extends CI_Controller{
            
        }
        public function upCliente(){
-         $this->form_validation->set_rules('NombreC', 'Nombre', 'trim|is_unique[cliente.NombreC]|required');
+         $this->form_validation->set_rules('NombreC', 'Nombre', 'trim|required|alpha');
          $this->form_validation->set_rules('Telefono', 'Teléfono', 'trim|required|numeric');
          $this->form_validation->set_rules('Direccion', 'Dirección', 'trim|required');
          $id = $this->input->post('idCliente');

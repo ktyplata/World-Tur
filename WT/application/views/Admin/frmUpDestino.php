@@ -35,6 +35,23 @@
 
 <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="
 			  crossorigin="anonymous"></script>
+                          <link rel="stylesheet" type="text/css" href="<?=base_url();?>css/jquery.datetimepicker.css"/>
+<style type="text/css">
+
+
+.custom-date-style {
+	background-color: red !important;
+}
+
+.input{	
+}
+.input-wide{
+	width: 500px;
+}
+
+
+</style>
+    
 <div class="col-sm-6 col-sm-offset-2" >
     
     
@@ -61,7 +78,47 @@
         <label  for="HorarioLlegada">HorarioLlegada</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-calendar"></i> </span>  
-         <input class="form-control" type="datetime" id="HorarioLlegada" name="HorarioLlegada" placeholder="HorarioLlegada" required="required" value="<?php echo $n->HorarioLlegada; ?>">
+         
+         <input class="form-control" type="datetime" id="datetimepicker" name="HorarioLlegada" placeholder="Horario de llegada" required="required" value="<?php echo $n->HorarioLlegada; ?>">
+          <script src="<?=base_url();?>css/jquery.js"></script>
+<script src="<?=base_url();?>css/jquery.datetimepicker.full.js"></script>
+<script>/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+
+$.datetimepicker.setLocale('es');
+
+$('#datetimepicker_format').datetimepicker({value:'2015/04/15 05:03', format: $("#datetimepicker_format_value").val()});
+console.log($('#datetimepicker_format').datetimepicker('getValue'));
+
+$("#datetimepicker_format_change").on("click", function(e){
+	$("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({format: $("#datetimepicker_format_value").val()});
+});
+$("#datetimepicker_format_locale").on("change", function(e){
+	$.datetimepicker.setLocale($(e.currentTarget).val());
+});
+
+$('#datetimepicker').datetimepicker({
+dayOfWeekStart : 1,
+lang:'es',
+disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+
+});
+
+
+$('.some_class').datetimepicker();
+
+$('#default_datetimepicker').datetimepicker({
+	formatTime:'H:i',
+	formatDate:'d.m.Y',
+	//defaultDate:'8.12.1986', // it's my birthday
+	defaultDate:'+03.01.1970', // it's my birthday
+	defaultTime:'10:00',
+	timepickerScrollbar:false
+});
+
+</script>
     </div>
        
          
@@ -69,22 +126,15 @@
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>  
          
-          <select  class="form-control" id="idHotel" name="idHotel" placeholder="idHotel" required="required"> 
+         <select class="form-control" name="idHotel" required="required">
+
+            <option  value="<?php echo $n->NombreHotel; ?>"> <?php echo $n->NombreHotel; ?></option>
             
-             <option value="<?php echo $n->idHotel; ?>"> <?php echo $n->idHotel; ?> </option>
-             <option value="0"> Selecciona idHotel </option>    
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="6">6 </option>  
-             <option value="8">8 </option>  
-             <option value="9">9 </option> 
-             <option value="17">17 </option> 
-             <option value="18">18 </option> 
-         
-      
-        </select> 
+              <?php foreach($h as $u){ ?>
+           
+               <option value="<?php echo $u->idHotel; ?>"><?php echo $u->NombreHotel; ?></option>
+                              <?php } ?>
+                            </select>    
     </div>
        
         

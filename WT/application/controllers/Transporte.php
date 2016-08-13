@@ -73,7 +73,7 @@ class Transporte extends CI_Controller{
     
     public function addTransporte(){
           $this->form_validation->set_rules('NumLugares', 'Número Lugares','trim|required|numeric' );
-         $this->form_validation->set_rules('NomTransporte', 'Nombre Transporte', 'trim|is_unique[transporte.NomTransporte]|required' );
+         $this->form_validation->set_rules('NomTransporte', 'Nombre Transporte', 'trim|required' );
         
        if($this->form_validation->run ()=== false):
            $data['content'] = 'Admin/frmTransporte';

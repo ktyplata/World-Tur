@@ -6,6 +6,9 @@ class Viajes extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('Viaje_model');
+        $this->load->model('Cliente_model');
+        $this->load->model('Procedencia_model');
+        $this->load->model('Destino_model');
     }
     
     public function getViajes(){
@@ -33,18 +36,19 @@ class Viajes extends CI_Controller{
     }
     
         public function addViajes(){
-            $this->form_validation->set_rules('Nombre', 'Nombre', 'trim|is_unique[viajes.Nombre]|required');
+            $this->form_validation->set_rules('Nombre', 'Nombre', 'trim|required');
             $this->form_validation->set_rules('Precio', 'Precio', 'trim|required|numeric');
             $this->form_validation->set_rules('NumEntradas', 'Número de Entradas', 'trim|required|numeric');
             $this->form_validation->set_rules('Itinerario', 'Itinerario', 'trim|required');
             $this->form_validation->set_rules('LugaresVisitados', 'Lugares Visitados', 'trim|required|numeric');
-            $this->form_validation->set_rules('idCliente', 'idCliente', 'trim|required|numeric');
-            $this->form_validation->set_rules('idProcedencia', 'idProcedencia', 'trim|required|numeric');
-            $this->form_validation->set_rules('idDestino', 'idDestino', 'trim|required|numeric');
+            $this->form_validation->set_rules('idCliente', 'Cliente', 'trim|required');
+            $this->form_validation->set_rules('idProcedencia', 'Procedencia', 'trim|required');
+            $this->form_validation->set_rules('idDestino', 'Destino', 'trim|required');
 //            $this->form_validation->set_rules('TotalViaje', 'TotalViaje', 'trim|required|numeric');
 //            $this->form_validation->set_rules('Preciohotel', 'Preciohotel', 'trim|required|numeric');
        if($this->form_validation->run ()=== false):
             $data['content'] = 'Admin/frmViajes';
+            $data['vi'] = $this->Viaje_model->getViajes();
             $this->load->view('plantillaAdmin', $data);
         else:
         $n = $this->input->post('Nombre');
@@ -81,14 +85,14 @@ class Viajes extends CI_Controller{
         $this->getViajes();
     }*/
      public function upViajes(){
-         $this->form_validation->set_rules('Nombre', 'Nombre', 'trim|is_unique[viajes.Nombre]|required');
+         $this->form_validation->set_rules('Nombre', 'Nombre', 'trim|required');
             $this->form_validation->set_rules('Precio', 'Precio', 'trim|required|numeric');
             $this->form_validation->set_rules('NumEntradas', 'Número de Entradas', 'trim|required|numeric');
             $this->form_validation->set_rules('Itinerario', 'Itinerario', 'trim|required');
             $this->form_validation->set_rules('LugaresVisitados', 'Lugares Visitados', 'trim|required|numeric');
-            $this->form_validation->set_rules('idCliente', 'idCliente', 'trim|required|numeric');
-            $this->form_validation->set_rules('idProcedencia', 'idProcedencia', 'trim|required|numeric');
-            $this->form_validation->set_rules('idDestino', 'idDestino', 'trim|required|numeric');
+            $this->form_validation->set_rules('idCliente', 'Cliente', 'trim|required');
+            $this->form_validation->set_rules('idProcedencia', 'Procedencia', 'trim|required');
+            $this->form_validation->set_rules('idDestino', 'Destino', 'trim|required');
 //            $this->form_validation->set_rules('TotalViaje', 'TotalViaje', 'trim|required|numeric');
 //            $this->form_validation->set_rules('Preciohotel', 'Preciohotel', 'trim|required|numeric');
             $id = $this->input->post('idViajes');
@@ -137,11 +141,13 @@ class Viajes extends CI_Controller{
      public function frmUpViajes($id){
         $dato['viajes'] = $this->Viaje_model->getViajes($id);
          $dato['content'] = 'Admin/frmUpViajes';
+         $dato['cl'] = $this->Cliente_model->getCliente();
+         $dato['pr'] = $this->Procedencia_model->getProcedencia();
+         $dato['de'] = $this->Destino_model->getDestino();
         $this->load->view('plantillaAdmin', $dato);
     }
     
      
-    
     public function delViajes($id){
         $this->Viaje_model->delViajes($id);
         

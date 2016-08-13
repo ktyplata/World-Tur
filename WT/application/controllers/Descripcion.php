@@ -17,6 +17,7 @@ class Descripcion extends CI_Controller {
      public function __construct() {
         parent::__construct();
         $this->load->model('Descripcion_model');
+        
     }
     
         public function getDes(){
@@ -40,7 +41,7 @@ class Descripcion extends CI_Controller {
         $this->load->view('plantillaAdmin', $dato);  
     }
          public function addDes(){
-           $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required|numeric');
+           $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required');
          $this->form_validation->set_rules('CostoHotel', 'Costo Hotel', 'trim|required|numeric');
        
        if($this->form_validation->run ()=== false):
@@ -59,14 +60,14 @@ class Descripcion extends CI_Controller {
   
     
      public function upDes(){
-          $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required|numeric');
+          $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required');
          $this->form_validation->set_rules('CostoHotel', 'Costo Hotel', 'trim|numeric|required');
          
          
          $id = $this->input->post('idDesc');
          
        if($this->form_validation->run ()=== false):
-         $dato['desc'] = $this->Descripcion_model->getDes($id);
+         $dato['descr'] = $this->Descripcion_model->getDes($id);
          $dato['content'] = 'Admin/frmUpDes';
          $this->load->view('plantillaAdmin', $dato);
        
@@ -84,8 +85,11 @@ class Descripcion extends CI_Controller {
     }
     
      public function frmUpDes($id){
-        $dato['desc'] = $this->Descripcion_model->getDes($id);
+         $this->load->model('Viaje_model');
+        $dato['descr'] = $this->Descripcion_model->getDes($id);
+        $dato['viajee'] = $this->Viaje_model->getViajes();
          $dato['content'] = 'Admin/frmUpDes';
+         
         $this->load->view('plantillaAdmin', $dato);
     }
     

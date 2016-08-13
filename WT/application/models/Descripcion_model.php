@@ -25,7 +25,8 @@ class Descripcion_model extends CI_Model{
         }
         
         public function paginados($cant, $segmento){
-            $sql=$this->db->get('descripcionhotel', $cant, $segmento);
+            $this->db->where('descripcionhotel.idViajes = viajes.idViajes');
+            $sql=$this->db->get('descripcionhotel, viajes', $cant, $segmento);
             if ($sql->num_rows()>0){
                 foreach ($sql->result()as $res){
                     $data[]=$res;
@@ -37,7 +38,8 @@ class Descripcion_model extends CI_Model{
         
      public function getDes($id = null){
         $this->db->select('*');
-        $this->db->from('descripcionhotel');
+        $this->db->from('descripcionhotel, viajes');
+        $this->db->where('descripcionhotel.idViajes = viajes.idViajes');
         if($id != null){
             $this->db->where('idDesc', $id);
         }

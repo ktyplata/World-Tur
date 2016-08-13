@@ -39,7 +39,7 @@
         <div class="panel-warning">
             <div class="panel-heading" style=" text-align: center">Este es el Apartado de Costos Hotel-Viajes</div>
 <table class="table  table-responsive table-striped table-hover table-bordered" >
-    <tr><td colspan="5" >
+    <tr><td colspan="6" >
             <a href="<?php echo base_url();?>index.php/Admin/frmDes" class="btn btn-info">Nuevo</a>
             <a href="<?php echo base_url();?>index.php/Descripcion/tuXML/Costos Hotel-Viajes" class="btn btn-info">Descargar XML</a>
             <a href="<?php echo base_url();?>index.php/Descripcion/tuExcel" class="btn btn-info">Descargar Excel</a>
@@ -47,6 +47,7 @@
     <tr>
         <td>IdDesc</td>
         <td>IdViajes</td>
+        <td>Nombre</td>
         <td class="hidden-xs">Costo Hotel</td>
        
         
@@ -57,6 +58,7 @@ if(isset($de)){
 foreach ($de as $n){
         echo "<tr>  <td>" . $n->idDesc . "</td>"
         . "<td>" . $n->idViajes . "</td>" .
+                "<td>" . $n->Nombre . "</td>" .
            "<td class='hidden-xs'>" . $n->CostoHotel. "</td>" ;
            
             

@@ -15,25 +15,11 @@ class Proveedor extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('Proveedor_model');
+        $this->load->model('Transporte_model');
     }
     
     
-     public function total(){
-            $sql=  $this->db->get('proveedortransporte');
-            return $sql->num_rows();
-        }
-        
-        public function paginados($cant, $segmento){
-            $sql=$this->db->get('proveedortransporte', $cant, $segmento);
-            if ($sql->num_rows()>0){
-                foreach ($sql->result()as $res){
-                    $data[]=$res;
-                } 
-                return $data;
-            }
-            return FALSE;
-        }
-    
+     
     
     public function getProv(){
         
@@ -77,15 +63,16 @@ class Proveedor extends CI_Controller{
     }*/
         
     public function addProv(){
-           $this->form_validation->set_rules('Nombre', 'Nombre Proveedor','trim|is_unique[proveedortransporte.Nombre]|required' );
+           $this->form_validation->set_rules('Nombre', 'Nombre Proveedor','trim|is_unique[proveedortransporte.Nombre]|required|alpha' );
            $this->form_validation->set_rules('Telefono', 'Teléfono', 'trim|required|numeric');
-           $this->form_validation->set_rules('Email', 'E-mail', 'trim|required');
+           $this->form_validation->set_rules('Email', 'E-mail', 'trim|required|valid_email');
            $this->form_validation->set_rules('Direccion', 'Dirección', 'trim|required');
-           $this->form_validation->set_rules('idTransporte', 'idTransporte', 'trim|required|numeric');
+           $this->form_validation->set_rules('idTransporte', 'Transporte', 'trim|required');
          
         
        if($this->form_validation->run ()=== false):
            $data['content'] = 'Admin/frmProv';
+           $data['prove'] = $this->Proveedor_model->getProv();
         $this->load->view('plantillaAdmin', $data);
        else:
         $n = $this->input->post('Nombre');
@@ -103,11 +90,11 @@ class Proveedor extends CI_Controller{
     
     
     public function upProv(){
-         $this->form_validation->set_rules('Nombre', 'Nombre Proveedor','trim|is_unique[proveedortransporte.Nombre]|required' );
+         $this->form_validation->set_rules('Nombre', 'Nombre Proveedor','trim|required' );
            $this->form_validation->set_rules('Telefono', 'Teléfono', 'trim|required|numeric');
-           $this->form_validation->set_rules('Email', 'E-mail', 'trim|required');
+           $this->form_validation->set_rules('Email', 'E-mail', 'trim|required|valid_email');
            $this->form_validation->set_rules('Direccion', 'Dirección', 'trim|required');
-           $this->form_validation->set_rules('idTransporte', 'idTransporte', 'trim|required|numeric');
+           $this->form_validation->set_rules('idTransporte', 'Transporte', 'trim|required');
            $id=$this->input->post('idProveedor');
         
        if($this->form_validation->run ()=== false):
@@ -132,11 +119,16 @@ class Proveedor extends CI_Controller{
     }
     
     public function frmUpProv($id){
-           $data['prove'] =$this->Proveedor_model->getProv($id);
-          $data['content'] = 'Admin/frmUpProv';
+        
+        $data['prove'] =$this->Proveedor_model->getProv($id);
+        $data['content'] = 'Admin/frmUpProv';
+        $this->load->model('Transporte_model');
+        $data['t'] = $this->Transporte_model->getTransporte();
         $this->load->view('plantillaAdmin', $data);
         
     }
+    
+   
      /*public function upProv(){
          
         $id = $this->input->post('idProveedor');

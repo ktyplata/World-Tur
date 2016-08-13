@@ -72,63 +72,48 @@
          <input class="form-control" type="text" id="LugaresVisitados" name="LugaresVisitados" placeholder="Lugares Visitados" required="required" value="<?php echo $n->LugaresVisitados; ?>">
     </div>
         
-         <label  for="idCliente">idCliente</label>
+         <label  for="idCliente">Cliente</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>
-         <select  class="form-control" name="idCliente" id="idCliente" placeholder="idCliente" required="required"> 
-         
-            <option value="<?php echo $n->idCliente; ?>"> <?php echo $n->idCliente; ?> </option>
-             <option value="0"> Selecciona idCliente </option> 
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="9">9 </option>  
-             <option value="10">10 </option>  
-             <option value="11">11 </option>  
-         
-      
-        </select>   
+         <select class="form-control" name="idCliente" required="required">
+
+            <option  value="<?php echo $n->idCliente; ?>"> <?php echo $n->NombreC; ?></option>
+            
+              <?php foreach($cl as $c){ ?>
+           
+               <option value="<?php echo $c->idCliente; ?>"><?php echo $c->NombreC; ?></option>
+                              <?php } ?>
+                            </select>     
         
     </div>
          
-         <label  for="idProcedencia">idProcedencia</label>
+         <label  for="idProcedencia">Procedencia</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>
-         <select  class="form-control" name="idProcedencia" id="idCliente" placeholder="idProcedencia" required="required"> 
-         
-            <option value="<?php echo $n->idProcedencia; ?>"> <?php echo $n->idProcedencia; ?> </option>
-             <option value="0"> Selecciona idProcedencia</option> 
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="5">5 </option>  
-             <option value="6">6 </option>  
-             <option value="7">7 </option>  
-             <option value="8">8</option>  
-         
-      
-        </select>   
+         <select class="form-control" name="idProcedencia" required="required">
+
+            <option  value="<?php echo $n->idProcedencia; ?>"> <?php echo $n->LugarSalida; ?></option>
+            
+              <?php foreach($pr as $p){ ?>
+           
+               <option value="<?php echo $p->idProcedencia; ?>"><?php echo $p->LugarSalida; ?></option>
+                              <?php } ?>
+                            </select>     
         
     </div>
          
-         <label  for="idDestino">idDestino</label>
+         <label  for="idDestino">Destino</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>
-         <select  class="form-control" name="idDestino" id="idCliente" placeholder="idDestino" required="required"> 
-         
-            <option value="<?php echo $n->idDestino; ?>"> <?php echo $n->idDestino; ?> </option>
-             <option value="0"> Selecciona idDestino</option> 
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="5">5 </option>  
-             <option value="6">6 </option>  
-             <option value="7">7 </option>  
-             <option value="8">8</option>   
-         
-      
-        </select>   
+       <select class="form-control" name="idDestino" required="required">
+
+            <option  value="<?php echo $n->idDestino; ?>"> <?php echo $n->LugarLlegada; ?></option>
+            
+              <?php foreach($de as $d){ ?>
+           
+               <option value="<?php echo $d->idDestino; ?>"><?php echo $d->LugarLlegada; ?></option>
+                              <?php } ?>
+                            </select>    
         
     </div>
          

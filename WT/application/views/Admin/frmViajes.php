@@ -44,7 +44,7 @@
         <label for="Nombre" >Nombre </label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user"></i> </span>
-         <input class="form-control" type="text" id="Nombre" name="Nombre" placeholder="Nombre" required="required" value="<?php echo set_value('Nombre'); ?>">
+         <input class="form-control" type="text" id="Nombre" name="Nombre" placeholder="Nombre" pattern="[a-zA-záéíóúÁÉÍÓÚ ]{2,25}" required="required" value="<?php echo set_value('Nombre'); ?>">
         
     </div>
         
@@ -77,19 +77,12 @@
     <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span> 
         
-        <select  class="form-control" name="idCliente" id="idCliente" placeholder="idCliente" required="required"> 
-         
-            <option value="0"> Selecciona idCliente </option>    
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="9">9 </option>  
-              <option value="10">10 </option>  
-             <option value="11">11 </option>  
-         
-      
-        </select>   
+      <select class="form-control" name="idCliente" required="required">
+                                <option value="">Elije un Cliente</option>
+                                <?php foreach($c as $l){ ?>
+                                        <option value="<?php echo $l->idCliente; ?>"><?php echo $l->NombreC; ?></option>
+                                    <?php } ?>
+                            </select>
          
         
     </div>
@@ -98,39 +91,24 @@
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>  
         
-         <select  class="form-control" id="idProcedencia" name="idProcedencia" placeholder="idProcedencia" required="required"> 
-         
-            <option value="0"> Selecciona idProcedencia </option>    
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="5">5 </option>  
-             <option value="6">6 </option> 
-             <option value="7">7 </option>  
-             <option value="8">8</option>
-         
-      
-        </select> 
+         <select class="form-control" name="idProcedencia" required="required">
+                                <option value="">Elije una Procedencia</option>
+                                <?php foreach($p as $r){ ?>
+                                        <option value="<?php echo $r->idProcedencia; ?>"><?php echo $r->LugarSalida; ?></option>
+                                    <?php } ?>
+                            </select>
     </div>
          
          
          <label  for="idDestino">idDestino</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>  
-        
-          <select  class="form-control" id="idDestino" name="idDestino" placeholder="idDestino" required="required"> 
-         
-            <option value="0"> Selecciona idDestino </option>    
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="5">5 </option>  
-             <option value="6">6 </option>  
-             <option value="7">7 </option>  
-             <option value="8">8</option>   
-         
-      
-        </select> 
+        <select class="form-control" name="idDestino" required="required">
+                                <option value="">Elije un Destino</option>
+                                <?php foreach($d as $e){ ?>
+                                        <option value="<?php echo $e->idDestino; ?>"><?php echo $e->LugarLlegada; ?></option>
+                                    <?php } ?>
+                            </select>
     </div>
         
 <!--         <label  for="TotalViaje">TotalViaje</label>

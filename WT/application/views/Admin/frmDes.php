@@ -50,19 +50,12 @@
     <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span> 
         
-        <select  class="form-control" name="idViajes" id="idViajes" placeholder="idViajes" required="required"> 
-         
-            <option value="0"> Selecciona idViajes </option>    
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="7">7 </option>  
-             <option value="8">8 </option>  
-             <option value="10">10 </option> 
-         
-      
-        </select>   
+        <select class="form-control" name="idViajes" required="required">
+                                <option value="">Elije un Viaje</option>
+                                <?php foreach($viaj as $v){ ?>
+                                        <option value="<?php echo $v->idViajes; ?>"><?php echo $v->Nombre; ?></option>
+                                    <?php } ?>
+                            </select> 
          
         
     </div>

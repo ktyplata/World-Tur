@@ -73,7 +73,7 @@ class Hotel extends CI_Controller{
     
     
      public function upHotel(){
-         $this->form_validation->set_rules('NombreHotel', 'NombreHotel', 'trim|is_unique[hotel.NombreHotel]|required');
+         $this->form_validation->set_rules('NombreHotel', 'NombreHotel', 'trim|required');
          $this->form_validation->set_rules('Direccion', 'Dirección', 'trim|required');
          $this->form_validation->set_rules('Telefono', 'Teléfono', 'trim|required|numeric');
          $this->form_validation->set_rules('CostoHotel', 'Costo Hotel', 'trim|required|numeric');

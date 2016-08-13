@@ -33,15 +33,10 @@ class Viaje_model extends CI_Model{
     
     public function getViajes($id = null){
         $this->db->select('*');
-//        $this->db->from('viajes');
         $this->db->from('viajes, cliente, procedencia, destino');
-//        $this->db->from('viajes, cliente, procedencia, destino, hotel');
         $this->db->where('viajes.idCliente = cliente.idCliente');
         $this->db->where('viajes.idProcedencia = procedencia.idProcedencia');
         $this->db->where(' destino.idDestino = viajes.idDestino ');
-//        $this->db->where('viajes.idHotel = hotel.idHotel');
-//        $this->db->select('SUM(hotel.CostoHotel + viaje.Precio)');
-//        $this->db->query("call sp_addCotizar('$id','$p','$ch')");
         if($id != null){
             $this->db->where('idViajes', $id);
         }
@@ -51,9 +46,6 @@ class Viaje_model extends CI_Model{
             return $sql->result();
         }
     }
-    
-    
-   
     
     public function addViajes($n, $p, $num, $i, $lv, $idC, $idP, $idD){
         $dato = array(

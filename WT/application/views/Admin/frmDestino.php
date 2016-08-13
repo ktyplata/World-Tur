@@ -35,6 +35,21 @@
 
 <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="
 			  crossorigin="anonymous"></script>
+                          <link rel="stylesheet" type="text/css" href="<?=base_url();?>css/jquery.datetimepicker.css"/>
+<style type="text/css">
+
+
+.custom-date-style {
+	background-color: red !important;
+}
+
+.input{	
+}
+.input-wide{
+	width: 500px;
+}
+
+</style>
 <div class="col-sm-6 col-sm-offset-2" >
     
     
@@ -50,7 +65,7 @@
         <label for="NumLugares" >LugarLlegada </label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-home"></i> </span>
-         <input class="form-control" type="text" id="LugarLlegada" name="LugarLlegada" placeholder="LugarLlegada" required="required" value="<?php echo set_value('Nombre'); ?>">
+         <input class="form-control" type="text" id="LugarLlegada" name="LugarLlegada" placeholder="LugarLlegada" pattern="[a-zA-záéíóúÁÉÍÓÚ ]{2,25}" required="required" value="<?php echo set_value('Nombre'); ?>">
         
     </div>
         
@@ -58,28 +73,59 @@
         <label  for="HorarioLlegada">HorarioLlegada</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-calendar"></i> </span>  
-         <input class="form-control" type="datetime-local"  id="HorarioLlegada" name="HorarioLlegada" placeholder="HorarioLlegada" required="required">
+         
+         <input class="form-control" type="datetime" id="datetimepicker" name="HorarioLlegada" placeholder="Horario de llegada" required="required">
+          <script src="<?=base_url();?>css/jquery.js"></script>
+<script src="<?=base_url();?>css/jquery.datetimepicker.full.js"></script>
+<script>/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+
+$.datetimepicker.setLocale('es');
+
+$('#datetimepicker_format').datetimepicker({value:'2015/04/15 05:03', format: $("#datetimepicker_format_value").val()});
+console.log($('#datetimepicker_format').datetimepicker('getValue'));
+
+$("#datetimepicker_format_change").on("click", function(e){
+	$("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({format: $("#datetimepicker_format_value").val()});
+});
+$("#datetimepicker_format_locale").on("change", function(e){
+	$.datetimepicker.setLocale($(e.currentTarget).val());
+});
+
+$('#datetimepicker').datetimepicker({
+dayOfWeekStart : 1,
+lang:'es',
+disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+
+});
+
+
+$('.some_class').datetimepicker();
+
+$('#default_datetimepicker').datetimepicker({
+	formatTime:'H:i',
+	formatDate:'d.m.Y',
+	//defaultDate:'8.12.1986', // it's my birthday
+	defaultDate:'+03.01.1970', // it's my birthday
+	defaultTime:'10:00',
+	timepickerScrollbar:false
+});
+
+</script>
     </div>
        
          
         <label  for="idHotel">idHotel</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>  
-          <select  class="form-control" id="idHotel" name="idHotel" placeholder="idHotel" required="required" > 
-            
-             <option value="0"> Selecciona idHotel </option>    
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="6">6 </option>  
-             <option value="8">8 </option>  
-             <option value="9">9 </option> 
-             <option value="17">17 </option> 
-             <option value="18">18 </option> 
-         
-      
-        </select> 
+         <select class="form-control" name="idHotel" required="required">
+                                <option value="">Elije un Hotel</option>
+                                <?php foreach($ho as $h){ ?>
+                                        <option value="<?php echo $h->idHotel; ?>"><?php echo $h->NombreHotel; ?></option>
+                                    <?php } ?>
+                            </select>
     </div>
        
           

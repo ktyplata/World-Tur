@@ -60,10 +60,7 @@ class Usuario_model extends CI_Model{
         );
        return $this->db->insert('users', $dato);
         
-	
     }
-    
-  
     
     public function upUsuario($id,  $u, $p){
         //UPDATE Usuario SET (username= '$u', password='$p',

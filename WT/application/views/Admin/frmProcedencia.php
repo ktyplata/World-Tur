@@ -35,6 +35,22 @@
 
 <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="
 			  crossorigin="anonymous"></script>
+                          <link rel="stylesheet" type="text/css" href="<?=base_url();?>css/jquery.datetimepicker.css"/>
+<style type="text/css">
+
+
+.custom-date-style {
+	background-color: red !important;
+}
+
+.input{	
+}
+.input-wide{
+	width: 500px;
+}
+
+</style>
+
 <div class="col-sm-6 col-sm-offset-2" >
     
     
@@ -58,25 +74,58 @@
         <label  for="HorarioSalida">HorarioSalida</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-bus"></i> </span>  
-         <input class="form-control" type="datetime-local" id="HorarioSalida" name="HorarioSalida" placeholder="Horario Salida" required="required">
+         <input class="form-control" id="datetimepicker" type="datetime" value="2016/12/12" id="HorarioSalida" name="HorarioSalida" placeholder="Horario Salida" required="required">
     </div>
         
+<script src="<?=base_url();?>css/jquery.js"></script>
+<script src="<?=base_url();?>css/jquery.datetimepicker.full.js"></script>
+<script>/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+
+$.datetimepicker.setLocale('es');
+
+$('#datetimepicker_format').datetimepicker({value:'2015/04/15 05:03', format: $("#datetimepicker_format_value").val()});
+console.log($('#datetimepicker_format').datetimepicker('getValue'));
+
+$("#datetimepicker_format_change").on("click", function(e){
+	$("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({format: $("#datetimepicker_format_value").val()});
+});
+$("#datetimepicker_format_locale").on("change", function(e){
+	$.datetimepicker.setLocale($(e.currentTarget).val());
+});
+
+$('#datetimepicker').datetimepicker({
+dayOfWeekStart : 1,
+lang:'es',
+disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+
+});
+
+
+$('.some_class').datetimepicker();
+
+$('#default_datetimepicker').datetimepicker({
+	formatTime:'H:i',
+	formatDate:'d.m.Y',
+	//defaultDate:'8.12.1986', // it's my birthday
+	defaultDate:'+03.01.1970', // it's my birthday
+	defaultTime:'10:00',
+	timepickerScrollbar:false
+});
+
+</script>
         
         <label  for="idProveedor">idProveedor</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>  
-         <select  class="form-control" id="idProveedor" name="idProveedor" placeholder="idProveedor" required="required"> 
-         
-            <option value="0"> Selecciona idProveedor </option>    
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="6">6 </option>  
-             <option value="7">7 </option>  
-         
-      
-        </select>   
+        <select class="form-control" name="idProveedor" required="required">
+                                <option value="">Elije un Provedor</option>
+                                <?php foreach($pro as $pr){ ?>
+                                        <option value="<?php echo $pr->idProveedor ?>"><?php echo $pr->Nombre ?></option>
+                                    <?php } ?>
+                            </select>
    
     </div>
        

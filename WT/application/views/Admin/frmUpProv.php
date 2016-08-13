@@ -79,19 +79,15 @@
         <label  for="idTransporte">idTransporte</label>
     <div class="form-group input-group">
          <span class="input-group-addon"><i class="fa fa-user-secret"></i> </span>  
-         <select  class="form-control" id="idTransporte" name="idTransporte" placeholder="idTransporte" required="required"> 
-                
-             <option value="<?php echo $n->idTransporte; ?>"> <?php echo $n->idTransporte; ?> </option>
-             <option value="0"> Selecciona idTransporte </option>    
-             <option value="1"> 1</option>  
-             <option value="2">2 </option>  
-             <option value="3">3 </option>  
-             <option value="4">4 </option>  
-             <option value="5">5 </option>  
-             <option value="6">6 </option>  
          
-      
-        </select>  
+          <select class="form-control" name="idTransporte" required="required">
+              
+             <option value="<?php echo $n->idTransporte; ?>"> <?php echo $n->NomTransporte; ?> </option>
+             <?php foreach($t as $p){ ?>
+        
+                                        <option value="<?php echo $p->idTransporte; ?>"><?php echo $p->NomTransporte; ?></option>
+                                    <?php } ?>
+                            </select>
     </div>
 
    

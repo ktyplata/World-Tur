@@ -15,6 +15,7 @@ class Destino extends CI_Controller{
    public function __construct() {
         parent::__construct();
         $this->load->model('Destino_model');
+        $this->load->model('Hotel_model');
     }
     
     public function getDestino(){
@@ -54,9 +55,9 @@ class Destino extends CI_Controller{
     
     
     public function addDestino(){
-          $this->form_validation->set_rules('LugarLlegada', 'Lugar Llegada','trim|is_unique[destino.LugarLlegada]|required' );
+          $this->form_validation->set_rules('LugarLlegada', 'Lugar Llegada','trim|is_unique[destino.LugarLlegada]|required|alpha' );
            $this->form_validation->set_rules('HorarioLlegada', 'Horario Llegada', 'trim|required');
-           $this->form_validation->set_rules('idHotel', 'idHotel', 'trim|required|numeric');
+           $this->form_validation->set_rules('idHotel', 'Hotel', 'required');
          
         
        if($this->form_validation->run ()=== false):
@@ -86,9 +87,9 @@ class Destino extends CI_Controller{
     }*/
     
     public function upDestino(){
-         $this->form_validation->set_rules('LugarLlegada', 'Lugar Llegada','trim|is_unique[destino.LugarLlegada]|required' );
+         $this->form_validation->set_rules('LugarLlegada', 'Lugar Llegada','trim|required' );
          $this->form_validation->set_rules('HorarioLlegada', 'Horario Llegada', 'trim|required');
-         $this->form_validation->set_rules('idHotel', 'idHotel', 'trim|required|numeric');
+         $this->form_validation->set_rules('idHotel', 'Hotel', 'trim|required');
           $id = $this->input->post('idDestino');
         
        if($this->form_validation->run ()=== false):
@@ -108,8 +109,10 @@ class Destino extends CI_Controller{
     }
     
      public function frmUpDestino($id){
-        $dato['destinos'] = $this->Destino_model->getDestino($id);
+         $dato['destinos'] = $this->Destino_model->getDestino($id);
          $dato['content'] = 'Admin/frmUpDestino';
+         $this->load->model('Hotel_model');
+         $dato['h'] = $this->Hotel_model->getHotel();
         $this->load->view('plantillaAdmin', $dato);
     }
     

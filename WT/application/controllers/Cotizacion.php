@@ -6,6 +6,7 @@ class Cotizacion extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('Cotizacion_model');
+         $this->load->model('Viaje_model');
     }
     public function getCot(){
       
@@ -28,7 +29,7 @@ class Cotizacion extends CI_Controller{
         $this->load->view('plantillaAdmin', $dato);  
     }
          public function addCot(){
-           $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required|numeric');
+           $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required');
          $this->form_validation->set_rules('Costohotel', 'Costo Hotel', 'trim|required|numeric');
          $this->form_validation->set_rules('Precio', 'Precio', 'trim|required|numeric');
        if($this->form_validation->run ()=== false):
@@ -49,7 +50,7 @@ class Cotizacion extends CI_Controller{
   
     
      public function upCot(){
-          $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required|numeric');
+          $this->form_validation->set_rules('idViajes', 'idViajes', 'trim|required');
          $this->form_validation->set_rules('Costohotel', 'Costo Hotel', 'trim|required|numeric');
          $this->form_validation->set_rules('Precio', 'Precio', 'trim|required|numeric');
          
@@ -76,9 +77,11 @@ class Cotizacion extends CI_Controller{
      public function frmUpCot($id){
         $dato['cot'] = $this->Cotizacion_model->getCot($id);
          $dato['content'] = 'Admin/frmUpCot';
+         $dato['vi'] = $this->Viaje_model->getViajes();
         $this->load->view('plantillaAdmin', $dato);
     }
-    
+     
+        
     public function delCot($id){
         $this->Cotizacion_model->delCot($id);
         
